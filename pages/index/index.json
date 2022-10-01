@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "home" : "/pages/home/home",
+    "addNew": "/pages/addNew/addNew",
+    "user" :  "/pages/user/user"
+  }
 }

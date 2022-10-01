@@ -1,13 +1,15 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/addNew/addNew",
+    "pages/home/home",
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "起搏器随访系统",
     "navigationBarTextStyle":"black"
   },
   "style": "v2",

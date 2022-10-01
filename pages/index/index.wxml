@@ -1,24 +1,28 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<home wx:if="{{PageCur=='home'}}"></home>
+<addNew wx:if="{{PageCur=='addNew'}}"></addNew>
+<user wx:if="{{PageCur=='user'}}"></user>
+
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action" bindtap="NavChange" data-cur="home">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/logo.png"></image>
+    </view>
+    <view class="{{PageCur=='user'? 'text-green':'text-gray'}}"> 主页</view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+
+  <view class="action" bindtap="NavChange" data-cur="addNew">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/logo.png"></image>
+    </view>
+    <view class="{{PageCur=='addNew'? 'text-green':'text-gray'}}"> 新建记录</view>
 </view>
 
+
+  <view class="action" bindtap="NavChange" data-cur="user">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/logo.png"></image>
+    </view>
+    <view class="{{PageCur=='user'? 'text-green':'text-gray'}}"> 个人信息</view>
+</view>
+
+</view>
