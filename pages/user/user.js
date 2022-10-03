@@ -6,6 +6,7 @@ Component({
       starCount: 3,
       forksCount: 23,
       visitTotal: 4000,
+      doctorInfo: "负责医师: 王明 \r\n 所在医院: 武汉大学中南医院"
     },
     attached() {
       console.log("success")
@@ -18,26 +19,32 @@ Component({
       wx.hideLoading()
     },
     methods: {
-      coutNum(e) {
-        // if (e > 1000 && e < 10000) {
-        //   e = (e / 1000).toFixed(1) + 'k'
-        // }
-        // if (e > 10000) {
-        //   e = (e / 10000).toFixed(1) + 'W'
-        // }
-        return e
+        ShowUserDoctorInfo() {
+        wx.showModal({
+            title: '医师信息',
+            content: this.data.doctorInfo,
+            success (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
       },
-      CopyLink(e) {
-        wx.setClipboardData({
-          data: e.currentTarget.dataset.link,
-          success: res => {
-            wx.showToast({
-              title: '已复制',
-              duration: 1000,
-            })
-          }
-        })
-      },
+      ShowSystemInfo() {
+        wx.showModal({
+            title: '系统信息',
+            content: 'Version 1.0',
+            success (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        },
       showModal(e) {
         this.setData({
           modalName: e.currentTarget.dataset.target
@@ -46,12 +53,6 @@ Component({
       hideModal(e) {
         this.setData({
           modalName: null
-        })
-      },
-      showQrcode() {
-        wx.previewImage({
-          urls: ['https://image.weilanwl.com/color2.0/zanCode.jpg'],
-          current: 'https://image.weilanwl.com/color2.0/zanCode.jpg' // 当前显示图片的http链接      
         })
       },
     }

@@ -1,2 +1,17 @@
-<!--pages/home/home.wxml-->
-<text>主页 !!</text>
+<scroll-view>
+<view wx:for="{{dataList}}" wx:key="*this">
+    <view class="cu-timeline">
+        <view class="cu-time">{{item.time}}</view>
+        <view class="cu-item">
+            <view class="content">
+                <view class="cu-capsule radius">
+                    <view class="cu-tag bg-cyan">状况: 正常</view>
+                    <view class="cu-tag line-cyan">核验日期: 10:00</view>
+                </view>
+                <view class="margin-top">{{item.content}}</view>
+            </view>
+        </view>
+    </view>
+</view >
+
+</scroll-view>

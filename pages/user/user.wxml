@@ -4,7 +4,7 @@
     <view class="text-xl">用户昵称
       <text class="text-df">v2.0</text>
     </view>
-    <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+    <image src="/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
   <view class="padding flex text-center text-grey bg-white shadow-warp">
     <view class="flex flex-sub flex-direction solid-right">
@@ -20,43 +20,45 @@
     <view class="flex flex-sub flex-direction">
       <view class="text-xxl text-green">{{forksCount}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-fork"></text> 异常次数</view>
+        <text class="cuIcon-fork">
+        </text> 异常次数</view>
     </view>
   </view>
-
 
 
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow">
-      <view class="content" bindtap="CopyLink" data-link="https://baidu.com">
-        <text class="cuIcon-github text-grey"></text>
+      <view class="content"  data-link="">
+        <image src="/images/user_person.png" class="png" mode="aspectFit"></image>
         <text class="text-grey">个人信息</text>
       </view>
     </view>
+
     <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/about/about" hover-class="none">
-        <image src="/images/logo.png" class="png" mode="aspectFit"></image>
-        <text class="text-grey">关于随访系统</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/log/log" hover-class="none">
-        <text class="cuIcon-formfill text-green"></text>
-        <text class="text-grey">版本号:1.0</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
-      <view class="content" bindtap="showQrcode">
-        <text class="cuIcon-appreciatefill text-red"></text>
-        <text class="text-grey">赞赏支持</text>
+      <view class="content"   bindtap="ShowUserDoctorInfo" data-link="">
+        <image src="/images/user_doctor.png" class="png" mode="aspectFit"></image>
+        <text class="text-grey">负责医师</text>
       </view>
     </view>
+
+    <view class="cu-item arrow">
+      <view class="content" bindtap="ShowSystemInfo" hover-class="none">
+        <image src="/images/user_Info.png" class="png" mode="aspectFit"></image>
+        <text class="text-grey">关于系统 </text>
+      </view>
+    </view>
+
+
     <view class="cu-item arrow">
       <button class="cu-btn content" open-type="feedback">
-        <text class="cuIcon-writefill text-cyan"></text>
+        <image src="/images/user_advice.png" class="png" mode="aspectFit"></image>
         <text class="text-grey">意见反馈</text>
       </button>
     </view>
+
+
   </view>
+
+  
   <view class="cu-tabbar-height"></view>
 </scroll-view>

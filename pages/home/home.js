@@ -6,12 +6,46 @@ Page({
      */
     data: {
 
+        dataList:[
+            {
+                time:"06-17",
+                tag:"正常",
+                content:"上传记录"
+            },
+            {
+                time:"06-16",
+                tag:"正常",
+                content:"上传记录"
+            },
+            {
+                time:"06-15",
+                tag:"正常",
+                content:"上传记录"
+            },
+            {
+                time:"06-14",
+                tag:"正常",
+                content:"上传记录"
+            },
+            {
+                time:"06-13",
+                tag:"正常",
+                content:"上传记录"
+            },
+            {
+                time:"06-12",
+                tag:"正常",
+                content:"上传记录"
+            }
+        ],
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        
 
     },
 
@@ -54,7 +88,9 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom() {
-
+        wx.showToast({
+            title: '没有更多数据了',
+          })
     },
 
     /**

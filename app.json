@@ -1,17 +1,39 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/user/user",
-    "pages/addNew/addNew",
     "pages/home/home",
-    "pages/logs/logs"
+    "pages/user/user",
+    "pages/addNew/addNew"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "起搏器随访系统",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": true
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "borderStyle":"white",
+      "list": [
+          {
+          "pagePath": "pages/home/home",
+          "text": "主页",
+          "iconPath": "images/home.png",
+          "selectedIconPath": "images/home.png"
+      },
+      {
+        "pagePath": "pages/addNew/addNew",
+        "text": "新建记录",
+        "iconPath": "images/add.png",
+        "selectedIconPath": "images/add.png"
+    },
+    {
+      "pagePath": "pages/user/user",
+      "text": "用户",
+      "iconPath": "images/user.png",
+      "selectedIconPath": "images/user.png"
+  }
+    ]
+  }
 }
