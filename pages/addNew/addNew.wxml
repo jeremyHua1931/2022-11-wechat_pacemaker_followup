@@ -1,8 +1,8 @@
 <form>
-	<view class="cu-form-group margin-top">
-		<view class="title">是否感觉异样</view>
-		<switch checked="{{Check}}" bindtap="switchCheck"></switch>
-	</view>
+    <view class="cu-form-group margin-top">
+        <view class="title">是否感觉异样</view>
+        <switch checked="{{Check}}" bindtap="switchCheck"></switch>
+    </view>
 
     <view class="cu-form-group margin-top">
         <view class="title">主题</view>
@@ -19,45 +19,49 @@
     </view>
 
     <view class="cu-form-group">
-		<view class="title">日期选择</view>
-		<picker mode="date" value="{{date}}" start="2022-10-01" end="2024-10-01" bindchange="DateChange">
-			<view class="picker">
-				{{date}}
-			</view>
-		</picker>
-	</view>
+        <view class="title">日期选择</view>
+        <picker mode="date" value="{{date}}" start="2022-10-01" end="2024-10-01" bindchange="DateChange">
+            <view class="picker">
+                {{date}}
+            </view>
+        </picker>
+    </view>
 
 
     <view class="cu-bar bg-white margin-top">
-		<view class="action">
-			图片上传
-		</view>
-		<view class="action">
-			{{imgList.length}}/4
-		</view>
-	</view>
+        <view class="action">
+            图片上传
+        </view>
+        <view class="action">
+            {{imgList.length}}/4
+        </view>
+    </view>
 
     <view class="cu-form-group">
-		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
-					<text class="cuIcon-close"></text>
-				</view>
-			</view>
-			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
-				<text class="cuIcon-cameraadd"></text>
-			</view>
-		</view>
-	</view>
+        <view class="grid col-4 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+                <image src='{{imgList[index]}}' mode='aspectFill'></image>
+                <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                    <text class="cuIcon-close"></text>
+                </view>
+            </view>
+            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+                <text class="cuIcon-cameraadd"></text>
+            </view>
+        </view>
+    </view>
 
     <view class="cu-form-group margin-top">
-		<view class="title">备注</view>
-		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="描述身体其他状况"></textarea>
-	</view>
+        <view class="title">备注</view>
+        <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="描述身体其他状况"></textarea>
+    </view>
 </form>
 
 <view class="padding flex flex-direction">
-  <button class="cu-btn bg-grey lg">清空数据</button>
-  <button class="cu-btn bg-red margin-tb-sm lg">确认提交</button>
+    <button class="cu-btn bg-grey lg">清空数据</button>
+    <button class="cu-btn bg-red margin-tb-sm lg">确认提交</button>
+</view>
+
+<view>
+    <button type='primary' bindtap='choose'>测试上传图片到阿里云</button>
 </view>
