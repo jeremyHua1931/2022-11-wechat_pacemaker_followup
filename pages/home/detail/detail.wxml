@@ -1,66 +1,187 @@
-<!--pages/home/detail.wxml-->
+<!-- <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">表单</view>
+</cu-custom> -->
+<!-- 若通过审核则显示所有信息 -->
+<view wx:if="{{ifPassed}}">
 <form>
-    <view class="cu-form-group margin-top">
-        <view class="title">是否感觉异样</view>
-        <switch checked="{{Check}}" bindtap="switchCheck"></switch>
-    </view>
+  <view class="cu-bar bg-white">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text>
+    <text>基本随访信息</text>
+  </view>
+</view>
+	<view class="cu-form-group">
+		<view class="title">所属随访次数</view>
+		<input disabled="true"  placeholder="{{item1.content1}}"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">随访医生</view>
+		<input disabled="true" placeholder="{{item1.content2}}"></input>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">是否为常规随访</view>
+		<switch disabled="true" checked="{{item1.content3}}"></switch>
+	</view>
 
-    <view class="cu-form-group margin-top">
-        <view class="title">主题</view>
-        <input placeholder="简单描述本次上传内容"></input>
-    </view>
+  <!-- <text>下方是占位图片</text> -->
+  <view class="cu-form-group">
+		<view class="title">随访日期</view>
+		<picker disabled="true" mode="date" value="{{item1.date}}" start="2015-09-01" end="2030-09-01" bindchange="DateChange">
+			<view class="picker">
+				{{item1.date}}
+			</view>
+		</picker>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">随访时间</view>
+		<picker disabled="true" mode="time" value="{{item1.time}}" start="00:00" end="24:00" bindchange="TimeChange">
+			<view class="picker">
+				{{item1.time}}
+			</view>
+		</picker>
+	</view>
 
-    <view class="cu-form-group">
-        <view class="title">时间选择</view>
-        <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="TimeChange">
-            <view class="picker">
-                {{time}}
-            </view>
-        </picker>
-    </view>
+  <view class="cu-form-group align-start">
+		<view class="title">临床表现</view>
+		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.content4}}"></textarea>
+	</view>
+	<view class="cu-form-group  margin-top" >
+		<view class="title">电池状态</view>
+		<checkbox class="round" checked="{{item1.content5}}" disabled=""></checkbox>
+	</view>
 
-    <view class="cu-form-group">
-        <view class="title">日期选择</view>
-        <picker mode="date" value="{{date}}" start="2022-10-01" end="2024-10-01" bindchange="DateChange">
-            <view class="picker">
-                {{date}}
-            </view>
-        </picker>
-    </view>
+  <view class="cu-form-group">
+		<view class="title">预估寿命</view>
+		<input disabled="true" placeholder="{{item1.content6}}"></input>
+	</view>
 
+  <view class="cu-form-group">
+		<view class="title">起搏模式</view>
+		<input disabled="true" placeholder="{{item1.content7}}"></input>
+	</view>
+  
+  <view class="cu-form-group">
+		<view class="title">低限频率</view>
+		<input disabled="true" placeholder="{{item1.content8}}"></input>
+	</view>
+
+  <view class="cu-form-group">
+		<view class="title">上限跟踪频率</view>
+		<input disabled="true" placeholder="{{item1.content9}}"></input>
+	</view>
+
+	<view class="cu-form-group align-start  margin-top">
+		<view class="title">备注</view>
+		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.content10}}"></textarea>
+	</view>
+
+  
+
+<view class="cu-form-group align-start">
+		<view class="title">建议</view>
+		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.content11}}"></textarea>
+	</view>
+
+	<view class="cu-bar bg-white margin-top">
+		<view class="action">
+			图片上传
+		</view>
+		<view class="action">
+			{{imgList.length}}/4
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+    
+	</view>
+	<view class="cu-form-group">
+		<view class="title"></view>
+		<input placeholder="" disabled="true"></input>
+		<button class="cu-btn bg-green shadow" bindtap="uploadImage">上传</button>
+	</view>
+
+  <view class="cu-bar bg-white margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>
+    <text>附加随访信息</text>
+  </view>
+</view>
+<view class="cu-form-group ">
+			<view class="title">心脏超声</view>
+			<radio checked="{{item1.content12}}" disabled="true"></radio>
+		</view>
 
     <view class="cu-bar bg-white margin-top">
-        <view class="action">
-            图片上传
-        </view>
-        <view class="action">
-            {{imgList.length}}/4
-        </view>
-    </view>
-
-    <view class="cu-form-group">
-        <view class="grid col-4 grid-square flex-sub">
-            <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
-                <image src='{{imgList[index]}}' mode='aspectFill'></image>
-                <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
-                    <text class="cuIcon-close"></text>
-                </view>
-            </view>
-            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
-                <text class="cuIcon-cameraadd"></text>
-            </view>
-        </view>
-    </view>
-
-    <view class="cu-form-group margin-top">
-        <view class="title">备注</view>
-        <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="描述身体其他状况"></textarea>
-    </view>
-</form>
-
-<view class="padding flex flex-direction">
-    <button class="cu-btn bg-green lg margin-tb-sm lg">编辑数据</button>
-    <button class="cu-btn bg-grey lg margin-tb-sm lg">清空数据</button>
-    <button class="cu-btn bg-red lg margin-tb-sm lg">确认提交</button>
+  <view class="action">
+    <text class="cuIcon-title text-yellow"></text>
+    <text>电极信息-左心室</text>
+  </view>
 </view>
 
+<view class="cu-form-group">
+		<view class="title">阈值(v)</view>
+		<input disabled="true" placeholder="{{item1.content13}}"></input>
+	</view>
+
+  <view class="cu-form-group">
+		<view class="title">脉宽(ms)</view>
+		<input disabled="true" placeholder="{{item1.content14}}"></input>
+	</view>
+  
+  <view class="cu-form-group">
+		<view class="title">P//R波(mv)</view>
+		<input disabled="true" placeholder="{{item1.content15}}"></input>
+	</view>
+
+  <view class="cu-form-group">
+		<view class="title">起搏阻抗(Ω)</view>
+		<input disabled="true" placeholder="{{item1.content16}}"></input>
+	</view>
+ <view class="cu-form-group">
+		<view class="title">起搏百分比(%)</view>
+		<input disabled="true" placeholder="{{item1.content17}}"></input>
+	</view>
+
+  <view class="cu-form-group">
+		<view class="title">感知百分比(%)</view>
+		<input disabled="true" placeholder="{{item1.content18}}"></input>
+	</view>
+  
+  <view class="cu-form-group">
+		<view class="title">除颤阻抗(Ω)</view>
+		<input disabled="true" placeholder="{{item1.content19}}"></input>
+	</view>
+
+  <view class="cu-form-group">
+		<view class="title">输出电压(V)//脉宽(m)</view>
+		<input disabled="true" placeholder="{{item1.content20}}"></input>
+	</view>
+
+  <view class="cu-form-group">
+		<view class="title">感知灵敏度(mv)</view>
+		<input disabled="true" placeholder="{{item1.content21}}"></input>
+	</view>
+<view class="cu-form-group align-start  margin-top">
+		<view class="title">备注</view>
+		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.content22}}"></textarea>
+	</view>
+
+
+ 
+	
+	
+	<!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->
+
+</form>
+</view>

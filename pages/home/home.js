@@ -8,14 +8,40 @@ Page({
 
         dataList:[
             {
-                time:"06-17",
+                time:"22-10-28",
+                tag:"正常",
+                content1:"28",
+                content2:"吕敏",
+                content3:"常规随访",
+                content4:"正常"
+            },
+            {
+                time:"22-06-16",
+                tag:"正常",
+                content1:"26",
+                content2:"郭刚",
+                content3:"常规随访",
+                content4:"正常"
+            },
+            {
+                time:"22-06-15",
                 tag:"正常",
                 content:"上传记录"
             },
             {
-                time:"06-16",
+                time:"22-06-14",
                 tag:"正常",
                 content:"上传记录"
+            },
+            {
+                time:"22-06-13",
+                tag:"正常",
+                content:"上传记录"
+            },
+            {
+                time:"22-06-12",
+                tag:"正常",
+                content:"所属随访次数：26 \n 主治医师：郭刚\n随访种类：常规随访\n电池状态：正常"
             }
         ],
 
