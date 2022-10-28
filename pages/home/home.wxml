@@ -5,10 +5,14 @@
         <view class="cu-item">
             <view class="content" bindtap="jumpToDetail">
                 <view class="cu-capsule radius">
-                    <view class="cu-tag bg-cyan">状况: 正常</view>
-                    <view class="cu-tag line-cyan">核验日期: 10:00</view>
+                    <view class="cu-tag bg-cyan">电池状况: {{item.content4}}</view>
+                    <view class="cu-tag line-cyan">核验时间: {{item.time}}</view>
+                    <!-- 核验时间修改为不显示日期仅显示时间 -->
                 </view>
-                <view class="margin-top">{{item.content}}</view>
+                <view class="margin-top">所属随访次数：{{item.content1}}</view>
+                <view class="margin-top">主治医师：{{item.content2}}</view>
+                <view class="margin-top">随访种类：{{item.content3}}</view>
+                <!-- <view class="margin-top">点击查看详情</view> -->
             </view>
         </view>
     </view>

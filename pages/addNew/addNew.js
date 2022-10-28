@@ -93,7 +93,7 @@ Page({
         })
     },
 
-    // 上传图片到阿里云示例
+    // 上传图片到阿里云
     uploadImage:function(){
         wx.chooseImage({
            count: 9, // 默认最多一次选择9张图
