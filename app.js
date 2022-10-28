@@ -26,7 +26,7 @@ App({
         }
       });
 
-    if(that.globalData.userInfo.avatarUrl==null){
+    if(that.globalData.userInfo==null){
       wx.switchTab({
         url: '/pages/user/user',
       })

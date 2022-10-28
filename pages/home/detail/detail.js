@@ -1,7 +1,7 @@
 // pages/addNew/addNew.js
 const app = getApp()
-var uploadImage = require('../../utils/uploadFile.js');
-var util = require('../../utils/util.js');
+var uploadImage = require('../../../utils/uploadFile.js');
+var util = require('../../../utils/util.js');
 Page({
 
     /**
@@ -94,7 +94,7 @@ Page({
     },
 
     // 上传图片到阿里云示例
-    uploadImage:function(){
+    choose:function(){
         wx.chooseImage({
            count: 9, // 默认最多一次选择9张图
            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -110,45 +110,12 @@ Page({
                  wx.showLoading({
                     title: '上传中' + (i + 1) + '/' + res.tempFilePaths.length,
                     mask: true
-                 });
+                 })
   
                  //上传图片
                  //你的域名下的/cbb文件下的/当前年月日文件下的/图片.png
                  //图片路径可自行修改
-                // uploadProcess(res.tempFilePaths[i]);
-                // const host = 'https://sakucy.oss-cn-shanghai.aliyuncs.com;';
-                // const signature = '<signatureString>';
-                // const ossAccessKeyId = 'LTAI5t8hmN7idVoHB75bkbB2';
-                // // const policy = '<policyBase64Str>';
-                // const key = 'image/test.jpg';
-                // const securityToken = 'exUp9LbRGQWVVXusDCTgez5KCS11Qb'; 
-                // const filePath = res.tempFilePaths[i]; // 待上传文件的文件路径。
-                // console.log('开始上传');
-                // wx.uploadFile({
-                //   url: host, // 开发者服务器的URL。
-                //   filePath: filePath,
-                //   name: 'file', // 必须填file。
-                //   formData: {
-                //     key,
-                //     // policy,
-                //     OSSAccessKeyId: ossAccessKeyId,
-                //     // signature,
-                //     'x-oss-security-token': securityToken // 使用STS签名时必传。
-                //   },
-                //   success: (res) => {
-                //     if (res.statusCode === 204) {
-                //        console.log("======上传成功图片地址为：", res);
-                //        wx.hideLoading();
-                //     }
-                //   },
-                //   fail: err => {
-                //     console.log(err);
-                //        console.log("======上传失败======", res);
-                //        wx.hideLoading()
-                //   }
-                // });
-                console.log('正在上传'+res.tempFilePaths[i]);
-                 uploadImage(res.tempFilePaths[i], 'image/pacemaker/',
+                 uploadImage(res.tempFilePaths[i], 'cbb/' + nowTime + '/',
                     function (result) {
                        console.log("======上传成功图片地址为：", result);
                        wx.hideLoading();
@@ -162,7 +129,6 @@ Page({
         })
      },
 
-   
     /**
      * 生命周期函数--监听页面加载
      */

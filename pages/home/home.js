@@ -55,7 +55,13 @@ Page({
     onReady() {
 
     },
-
+    //跳转到详情页
+    //Todo：传参
+    jumpToDetail(){
+        wx.navigateTo({
+          url: '/pages/home/detail/detail',
+        })
+    },
     /**
      * 生命周期函数--监听页面显示
      */

@@ -1,3 +1,4 @@
+<!--pages/home/detail.wxml-->
 <form>
     <view class="cu-form-group margin-top">
         <view class="title">是否感觉异样</view>
@@ -58,10 +59,8 @@
 </form>
 
 <view class="padding flex flex-direction">
-    <button class="cu-btn bg-grey lg">清空数据</button>
-    <button class="cu-btn bg-red margin-tb-sm lg">确认提交</button>
+    <button class="cu-btn bg-green lg margin-tb-sm lg">编辑数据</button>
+    <button class="cu-btn bg-grey lg margin-tb-sm lg">清空数据</button>
+    <button class="cu-btn bg-red lg margin-tb-sm lg">确认提交</button>
 </view>
 
-<view>
-    <button type='primary' bindtap='uploadImage'>测试上传图片到阿里云</button>
-</view>

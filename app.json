@@ -1,39 +1,40 @@
 {
-  "pages":[
-    "pages/home/home",
-    "pages/user/user",
-    "pages/addNew/addNew"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "起搏器随访系统",
-    "navigationBarTextStyle":"black",
-    "enablePullDownRefresh": true
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json",
-  "tabBar": {
-    "borderStyle":"white",
-      "list": [
-          {
-          "pagePath": "pages/home/home",
-          "text": "主页",
-          "iconPath": "images/home.png",
-          "selectedIconPath": "images/home.png"
-      },
-      {
-        "pagePath": "pages/addNew/addNew",
-        "text": "新建记录",
-        "iconPath": "images/add.png",
-        "selectedIconPath": "images/add.png"
+    "pages": [
+        "pages/home/home",
+        "pages/user/user",
+        "pages/addNew/addNew",
+        "pages/home/detail/detail"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "起搏器随访系统",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
     },
-    {
-      "pagePath": "pages/user/user",
-      "text": "用户",
-      "iconPath": "images/user.png",
-      "selectedIconPath": "images/user.png"
-  }
-    ]
-  }
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "tabBar": {
+        "borderStyle": "white",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "主页",
+                "iconPath": "images/home.png",
+                "selectedIconPath": "images/home.png"
+            },
+            {
+                "pagePath": "pages/addNew/addNew",
+                "text": "新建记录",
+                "iconPath": "images/add.png",
+                "selectedIconPath": "images/add.png"
+            },
+            {
+                "pagePath": "pages/user/user",
+                "text": "用户",
+                "iconPath": "images/user.png",
+                "selectedIconPath": "images/user.png"
+            }
+        ]
+    }
 }
