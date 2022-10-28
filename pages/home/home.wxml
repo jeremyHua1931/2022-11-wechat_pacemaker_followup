@@ -1,17 +1,17 @@
 <scroll-view>
-<view wx:for="{{dataList}}" wx:key="*this">
+<view wx:for="{{app.globalData.followList}}" wx:key="*this">
     <view class="cu-timeline">
-        <view class="cu-time">{{item.time}}</view>
+        <view class="cu-time">{{item.date}}</view>
         <view class="cu-item">
             <view class="content" bindtap="jumpToDetail">
                 <view class="cu-capsule radius">
-                    <view class="cu-tag bg-cyan">电池状况: {{item.content4}}</view>
-                    <view class="cu-tag line-cyan">核验时间: {{item.time}}</view>
+                    <view class="cu-tag bg-cyan">电池状况: {{item.batteryState}}</view>
+                    <view class="cu-tag line-cyan">核验时间: {{item.date}}</view>
                     <!-- 核验时间修改为不显示日期仅显示时间 -->
                 </view>
-                <view class="margin-top">所属随访次数：{{item.content1}}</view>
-                <view class="margin-top">主治医师：{{item.content2}}</view>
-                <view class="margin-top">随访种类：{{item.content3}}</view>
+                <view class="margin-top">所属随访次数：{{item.frCount}}</view>
+                <view class="margin-top">主治医师：{{item.doctorName}}</view>
+                <view class="margin-top">随访种类：{{item.type}}</view>
                 <!-- <view class="margin-top">点击查看详情</view> -->
             </view>
         </view>

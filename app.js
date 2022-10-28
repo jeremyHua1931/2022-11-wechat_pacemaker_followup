@@ -8,9 +8,12 @@ App({
     openid: '0',
     userid: '0',
     hasUserInfo: false,
-    followlist: [],
+    followList: [],
     followDetailOne: [],
   },
+
+
+
 
   // 启动app
   onLaunch() {
@@ -23,9 +26,19 @@ App({
         console.log("用户已登陆")
         console.log("微信用户唯一辨识id：" + res.data)
         that.globalData.openId = res.data;
-        wx.switchTab({
-          url: '/pages/home/home',
-        })
+        wx.getStorage({
+          key: 'userInfo',
+          success(res) {
+            console.log("用户userInfo昵称: " + res.data.nickName)
+            that.globalData.userInfo = res.data;
+            that.globalData.hasUserInfo = true
+            // that.getFollowList()
+            wx.switchTab({
+              url: '/pages/home/home',
+            })
+          }
+        });
+
       },
       fail: function (err) {
         console.log("用户未登陆, 跳转user页面登陆")
@@ -39,14 +52,33 @@ App({
       }
     });
 
-    wx.getStorage({
-      key: 'userInfo',
-      success(res) {
-        console.log("用户userInfo昵称: "+ res.data.nickName)
-        that.globalData.userInfo = res.data;
-        that.globalData.hasUserInfo = true
-      }
-    });
   },
+
+  getFollowList: function () {
+    console.log("(初次登陆)开始请求随访记录列表")
+    var that = this
+    wx.request({
+      url: that.globalData.url + '/followRecord/followlist',
+      data: {
+        mrId: 54
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log("app请求数据")
+        var data=res.data.data
+        console.log(data)
+        that.globalData.followList = data;
+        console.log("app启动完毕")
+      },
+      fail: function (error) {}
+    })
+
+  },
+
+
+
 
 })

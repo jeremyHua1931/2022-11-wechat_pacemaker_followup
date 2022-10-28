@@ -23,6 +23,7 @@ Component({
         success: (res) => {
           console.log("微信用户userInfo获取成功, 如下: ")
           console.log("用户userInfo昵称: "+ res.userInfo.nickName);
+          console.log(res.userInfo)
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true,
@@ -61,8 +62,8 @@ Component({
               app.globalData.openid= res.data.openid
               wx.setStorageSync('openid', res.data.openid);
 
-              // that.register()
-              that.getFollowList()
+              that.register();
+
 
             },
             fail: (res) => {
@@ -85,29 +86,34 @@ Component({
       })
     },
 
-    // register: function(){
-    //   var that=this
-    //   console.log("开始注册用户")
-    //   wx.request({
-    //     url: that.globalData.url + "/user/login",
-    //     data: {
-    //       wechatId: userID
-    //     },
-    //     method: 'POST',
-    //     header: {
-    //       'content-type': 'application/json'
-    //     },
-    //     success: function (res) {
+    register: function(){
+      var that=this
+      console.log("开始注册用户")
+      wx.request({
+        url: app.globalData.url + "/user/add",
+        data: {
+          name: app.globalData.userInfo.nickName,
+          phone: "18627026188",
+          wechatId: app.globalData.openid,
+          image: app.globalData.userInfo.avatarUrl,
+          type: 0,
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+         console.log(res)
+         that.getFollowList();
+        },
+        fail: function (error) {
          
-    //     },
-    //     fail: function (error) {
-         
-    //     }
-    //   })
-    // },
+        }
+      })
+    },
 
     getFollowList:function(){
-      console.log("开始请求随访记录列表")
+      console.log("(初次登陆)开始请求随访记录列表")
       var that=this
       wx.request({
         url:  app.globalData.url + '/followRecord/followlist',
@@ -119,7 +125,8 @@ Component({
           'content-type': 'application/json'
         },
         success: function (res) {
-         console.log(res)
+         console.log(res.data.data)
+         app.globalData.followList=res.data.data;
         },
         fail: function (error) {
          
