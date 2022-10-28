@@ -2,6 +2,8 @@
 参考博客: https://blog.csdn.net/qq_23375733/article/details/81417296
 参考代码: https://github.com/hujinchen/Image_upload_aliyun
 
+只需更改utils/config.js
+
 阿里云key from pacemaker_backstage/../aliyun.properties :
 
 aliyun.endpoint = oss-cn-shanghai.aliyuncs.com
@@ -54,6 +56,9 @@ const uploadFile = function (filePath, dir, successc, failc) {
     url: aliyunServerURL,//开发者服务器 url
     filePath: filePath,//要上传文件资源的路径
     name: 'file',//必须填file
+    // header: {
+    //   "Content-Type":"multipart/form-data;",
+    // },
     formData: {
       'key': aliyunFileKey,
       'policy': policyBase64,

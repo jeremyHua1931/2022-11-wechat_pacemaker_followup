@@ -44,7 +44,7 @@ Page({
     },
     ChooseImage() {
         wx.chooseImage({
-            count: 4, //默认9
+            count: 3, //默认9
             sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], //从相册选择
             success: (res) => {
@@ -96,14 +96,13 @@ Page({
     // 上传图片到阿里云示例
     uploadImage:function(){
         wx.chooseImage({
-           count: 9, // 默认最多一次选择9张图
+           count: 3, // 默认最多一次选择9张图
            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
            success: function (res) {
               // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
               var tempFilePaths = res.tempFilePaths;
               var nowTime = util.formatTime(new Date());
-  
               //支持多图上传
               for (var i = 0; i < res.tempFilePaths.length; i++) {
                  //显示消息提示框
@@ -111,49 +110,13 @@ Page({
                     title: '上传中' + (i + 1) + '/' + res.tempFilePaths.length,
                     mask: true
                  });
-  
-                 //上传图片
-                 //你的域名下的/cbb文件下的/当前年月日文件下的/图片.png
-                 //图片路径可自行修改
-                // uploadProcess(res.tempFilePaths[i]);
-                // const host = 'https://sakucy.oss-cn-shanghai.aliyuncs.com;';
-                // const signature = '<signatureString>';
-                // const ossAccessKeyId = 'LTAI5t8hmN7idVoHB75bkbB2';
-                // // const policy = '<policyBase64Str>';
-                // const key = 'image/test.jpg';
-                // const securityToken = 'exUp9LbRGQWVVXusDCTgez5KCS11Qb'; 
-                // const filePath = res.tempFilePaths[i]; // 待上传文件的文件路径。
-                // console.log('开始上传');
-                // wx.uploadFile({
-                //   url: host, // 开发者服务器的URL。
-                //   filePath: filePath,
-                //   name: 'file', // 必须填file。
-                //   formData: {
-                //     key,
-                //     // policy,
-                //     OSSAccessKeyId: ossAccessKeyId,
-                //     // signature,
-                //     'x-oss-security-token': securityToken // 使用STS签名时必传。
-                //   },
-                //   success: (res) => {
-                //     if (res.statusCode === 204) {
-                //        console.log("======上传成功图片地址为：", res);
-                //        wx.hideLoading();
-                //     }
-                //   },
-                //   fail: err => {
-                //     console.log(err);
-                //        console.log("======上传失败======", res);
-                //        wx.hideLoading()
-                //   }
-                // });
                 console.log('正在上传'+res.tempFilePaths[i]);
                  uploadImage(res.tempFilePaths[i], 'image/pacemaker/',
                     function (result) {
-                       console.log("======上传成功图片地址为：", result);
+                       console.log("===> 上传成功图片地址为：", result);
                        wx.hideLoading();
                     }, function (result) {
-                       console.log("======上传失败======", result);
+                       console.log("===> 上传失败", result);
                        wx.hideLoading()
                     }
                  )

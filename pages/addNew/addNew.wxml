@@ -1,33 +1,4 @@
 <form>
-    <view class="cu-form-group margin-top">
-        <view class="title">是否感觉异样</view>
-        <switch checked="{{Check}}" bindtap="switchCheck"></switch>
-    </view>
-
-    <view class="cu-form-group margin-top">
-        <view class="title">主题</view>
-        <input placeholder="简单描述本次上传内容"></input>
-    </view>
-
-    <view class="cu-form-group">
-        <view class="title">时间选择</view>
-        <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="TimeChange">
-            <view class="picker">
-                {{time}}
-            </view>
-        </picker>
-    </view>
-
-    <view class="cu-form-group">
-        <view class="title">日期选择</view>
-        <picker mode="date" value="{{date}}" start="2022-10-01" end="2024-10-01" bindchange="DateChange">
-            <view class="picker">
-                {{date}}
-            </view>
-        </picker>
-    </view>
-
-
     <view class="cu-bar bg-white margin-top">
         <view class="action">
             图片上传
@@ -36,7 +7,6 @@
             {{imgList.length}}/4
         </view>
     </view>
-
     <view class="cu-form-group">
         <view class="grid col-4 grid-square flex-sub">
             <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
@@ -51,10 +21,7 @@
         </view>
     </view>
 
-    <view class="cu-form-group margin-top">
-        <view class="title">备注</view>
-        <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="描述身体其他状况"></textarea>
-    </view>
+
 </form>
 
 <view class="padding flex flex-direction">
