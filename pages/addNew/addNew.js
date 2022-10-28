@@ -17,6 +17,10 @@ Page({
         textareaBValue: ''
     },
 
+    getPhoneNumber (e) {
+      console.log(e.detail.code)
+    },
+
     switchCheck() {
         if (this.data.Check == true) {
             this.setData({

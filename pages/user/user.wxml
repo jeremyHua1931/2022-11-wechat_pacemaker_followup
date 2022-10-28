@@ -4,21 +4,13 @@
 
   <view class="UCenter-bg">
     <image wx:if="{{hasUserInfo}}" src="{{userInfo.avatarUrl}}" style="width:70px;height:70px;"></image>
-    <button wx:if="{{!hasUserInfo}}" bindtap="doAuthorization" type="primary">微信登录</button>
+    <button wx:if="{{!hasUserInfo}}" open-type="getPhoneNumber"  bindtap="doAuthorization" type="primary">微信登录</button>
     <view wx:if="{{hasUserInfo}}" class="text-xl">{{userInfo.nickName}}
       <text class="text-df"></text>
     </view>
     <image src="/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
 
-
-  <!-- <view wx:if="!{ifAlreadyLogin}"> -->
-  <!-- <view class="UCenter-bg">
-    <image src="/images/logo.png" class="png" mode="heightFix"></image> -->
-   
-    <!-- <image src="/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
-  </view> -->
-<!-- <view> -->
 
   <view class="padding flex text-center text-grey bg-white shadow-warp">
     <view class="flex flex-sub flex-direction solid-right">

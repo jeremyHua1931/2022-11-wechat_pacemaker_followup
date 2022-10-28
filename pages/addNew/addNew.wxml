@@ -32,3 +32,5 @@
 <view>
     <button type='primary' bindtap='uploadImage'>测试上传图片到阿里云</button>
 </view>
+
+
