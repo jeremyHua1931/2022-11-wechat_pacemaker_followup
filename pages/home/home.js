@@ -1,5 +1,7 @@
 // pages/home/home.js
-const app = getApp()
+const app = getApp();
+var uploadImage = require('../../utils/uploadFile.js');
+var util = require('../../utils/util.js');
 Page({
 
     /**
@@ -78,15 +80,16 @@ Page({
 
                 }
             }),()=>{
-                this.setData({
-                    dataList: data
-                })
+                // this.setData({
+                //     dataList: data
+                // })
             }
 
         // }
 
 
     },
+    
     //跳转到详情页
     //Todo：传参
     jumpToDetail() {

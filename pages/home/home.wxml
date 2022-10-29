@@ -1,5 +1,5 @@
 <scroll-view>
-<view wx:for="{{app.globalData.followList}}" wx:key="*this">
+<view wx:for="{{dataList}}" wx:key="*this">
     <view class="cu-timeline">
         <view class="cu-time">{{item.date}}</view>
         <view class="cu-item">
