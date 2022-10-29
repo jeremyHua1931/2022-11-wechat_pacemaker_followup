@@ -1,12 +1,12 @@
 <scroll-view>
 <view wx:for="{{dataList}}" wx:key="*this">
     <view class="cu-timeline">
-        <view class="cu-time">{{item.date}}</view>
+        <view class="cu-time">{{item.time1}}</view>
         <view class="cu-item">
             <view class="content" data-id="{{item.id}}" bindtap="jumpToDetail">
                 <view class="cu-capsule radius">
-                    <view class="cu-tag bg-cyan">电池状况: {{item.batteryState}}</view>
-                    <view class="cu-tag line-cyan">核验时间: {{item.date}}</view>
+                    <view class="cu-tag bg-cyan">核验状态: {{item.batteryState}}</view>
+                    <view class="cu-tag line-cyan">电池状况: {{item.batteryState}}</view>
                     <!-- 核验时间修改为不显示日期仅显示时间 -->
                 </view>
                 <view class="margin-top" >所属随访次数：{{item.frCount}}</view>

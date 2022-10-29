@@ -29,15 +29,16 @@ const Crypto = require('crypto.js');
  */ 
 const uploadFile = function (filePath, dir, successc, failc) {
   if (!filePath || filePath.length < 9) {
-    wx.showModal({
-      title: '图片错误',
-      content: '请重试',
-      showCancel: false,
-    })
+    // wx.showModal({
+    //   title: '图片错误',
+    //   content: '请重试',
+    //   showCancel: false,
+    // })
+    console.log("上传图片发生错误, /utils/uploadFile")
     return;
   }
   
-  console.log('上传图片.....');
+  // console.log('上传图片.....');
   
   // 获取上传的文件类型
   let fileTypeIndex = filePath.lastIndexOf('.');

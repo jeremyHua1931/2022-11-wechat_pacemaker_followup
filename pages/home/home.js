@@ -2,6 +2,7 @@
 const app = getApp();
 var uploadImage = require('../../utils/uploadFile.js');
 var util = require('../../utils/util.js');
+
 Page({
 
     /**
@@ -30,15 +31,6 @@ Page({
 
     },
 
-    sleep(numberMillis) {
-        var now = new Date();
-        var exitTime = now.getTime() + numberMillis;
-        while (true) {
-          now = new Date();
-          if (now.getTime() > exitTime)
-            return;
-        }
-      },
       
 
     /**
@@ -58,7 +50,6 @@ Page({
         var that = this
         var data = []
         
-        // if (that.data.dataList.length == 0) {
             wx.request({
                 url: app.globalData.url + '/followRecord/followlist',
                 data: {
@@ -72,7 +63,7 @@ Page({
                     console.log("主页请求数据开始")
                     console.log(res.data.data)
                     console.log("主页请求数据结束")
-                    data = res.data.data
+                    data = that.transDateList(res.data.data)
                     that.setData({
                     dataList: data
                 })
@@ -81,13 +72,8 @@ Page({
                 fail: function (error) {
 
                 }
-            }),()=>{
-                // this.setData({
-                //     dataList: data
-                // })
-            }
+            })
 
-        // }
 
 
     },
@@ -142,6 +128,25 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage() {
+
+    }
+
+    ,
+
+    // 往dataList中添加类似 "time: 22-10-15"的属性
+    transDateList:function(data){
+        var result=[]
+
+        console.log("开始处理数据")
+        // console.log(data)
+
+        for(var x in data){
+            // console.log(String(data[x].date).substring(2,10))
+            data[x].time1=String(data[x].date).substring(2,10);
+            data[x].time2=String(data[x].date).substring(0,10);
+        }
+        console.log(data)
+        return data;
 
     }
 })
