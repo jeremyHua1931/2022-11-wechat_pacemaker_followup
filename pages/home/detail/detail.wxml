@@ -13,20 +13,21 @@
 </view>
 	<view class="cu-form-group">
 		<view class="title">所属随访次数</view>
-		<input disabled="true"  placeholder="{{item1.content1}}"></input>
+		<input disabled="true"  placeholder="{{item1.follow_record.frCount}}"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">随访医生</view>
-		<input disabled="true" placeholder="{{item1.content2}}"></input>
+		<input disabled="true" placeholder="{{item1.follow_record.doctor}}"></input>
 	</view>
   <view class="cu-form-group">
 		<view class="title">是否为常规随访</view>
-		<switch disabled="true" checked="{{item1.content3}}"></switch>
+		<switch disabled="true" checked="{{item1.follow_record.type}}"></switch>
 	</view>
 
   <!-- <text>下方是占位图片</text> -->
   <view class="cu-form-group">
 		<view class="title">随访日期</view>
+		<!-- todo:date的切分 -->
 		<picker disabled="true" mode="date" value="{{item1.date}}" start="2015-09-01" end="2030-09-01" bindchange="DateChange">
 			<view class="picker">
 				{{item1.date}}
@@ -34,6 +35,7 @@
 		</picker>
 	</view>
   <view class="cu-form-group">
+	<!-- todo:date的切分 -->
 		<view class="title">随访时间</view>
 		<picker disabled="true" mode="time" value="{{item1.time}}" start="00:00" end="24:00" bindchange="TimeChange">
 			<view class="picker">
@@ -44,43 +46,43 @@
 
   <view class="cu-form-group align-start">
 		<view class="title">临床表现</view>
-		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.content4}}"></textarea>
+		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.follow_record.performance}}"></textarea>
 	</view>
 	<view class="cu-form-group  margin-top" >
 		<view class="title">电池状态</view>
-		<checkbox class="round" checked="{{item1.content5}}" disabled=""></checkbox>
+		<checkbox class="round" checked="{{item1.follow_record.batteryState}}" disabled=""></checkbox>
 	</view>
 
   <view class="cu-form-group">
 		<view class="title">预估寿命</view>
-		<input disabled="true" placeholder="{{item1.content6}}"></input>
+		<input disabled="true" placeholder="{{item1.follow_record.batteryLife}}"></input>
 	</view>
 
   <view class="cu-form-group">
 		<view class="title">起搏模式</view>
-		<input disabled="true" placeholder="{{item1.content7}}"></input>
+		<input disabled="true" placeholder="{{item1.follow_record.pacemakerPattern}}"></input>
 	</view>
   
   <view class="cu-form-group">
 		<view class="title">低限频率</view>
-		<input disabled="true" placeholder="{{item1.content8}}"></input>
+		<input disabled="true" placeholder="{{item1.follow_record.minFrequency}}"></input>
 	</view>
 
   <view class="cu-form-group">
 		<view class="title">上限跟踪频率</view>
-		<input disabled="true" placeholder="{{item1.content9}}"></input>
+		<input disabled="true" placeholder="{{item1.follow_record.maxFrequency}}"></input>
 	</view>
 
 	<view class="cu-form-group align-start  margin-top">
 		<view class="title">备注</view>
-		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.content10}}"></textarea>
+		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.follow_record.note}}"></textarea>
 	</view>
 
   
 
 <view class="cu-form-group align-start">
 		<view class="title">建议</view>
-		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.content11}}"></textarea>
+		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.follow_record.suggest}}"></textarea>
 	</view>
 
 	<view class="cu-bar bg-white margin-top">
@@ -119,7 +121,7 @@
 </view>
 <view class="cu-form-group ">
 			<view class="title">心脏超声</view>
-			<radio checked="{{item1.content12}}" disabled="true"></radio>
+			<radio checked="{{item1.heartUltrasound}}" disabled="true"></radio>
 		</view>
 
     <view class="cu-bar bg-white margin-top">
@@ -131,53 +133,108 @@
 
 <view class="cu-form-group">
 		<view class="title">阈值(v)</view>
-		<input disabled="true" placeholder="{{item1.content13}}"></input>
+		<input disabled="true" placeholder="{{item1.lvWireFollowRecord.thresholds}}"></input>
 	</view>
 
   <view class="cu-form-group">
 		<view class="title">脉宽(ms)</view>
-		<input disabled="true" placeholder="{{item1.content14}}"></input>
+		<input disabled="true" placeholder="{{item1.lvWireFollowRecord.pulsewidth}}"></input>
 	</view>
   
   <view class="cu-form-group">
 		<view class="title">P//R波(mv)</view>
-		<input disabled="true" placeholder="{{item1.content15}}"></input>
+		<input disabled="true" placeholder="{{item1.lvWireFollowRecord.prwave}}"></input>
 	</view>
 
   <view class="cu-form-group">
 		<view class="title">起搏阻抗(Ω)</view>
-		<input disabled="true" placeholder="{{item1.content16}}"></input>
+		<input disabled="true" placeholder="{{item1.lvWireFollowRecord.pacingImpedance}}"></input>
 	</view>
  <view class="cu-form-group">
 		<view class="title">起搏百分比(%)</view>
-		<input disabled="true" placeholder="{{item1.content17}}"></input>
+		<input disabled="true" placeholder="{{item1.lvWireFollowRecord.pacingPercent}}"></input>
 	</view>
 
   <view class="cu-form-group">
 		<view class="title">感知百分比(%)</view>
-		<input disabled="true" placeholder="{{item1.content18}}"></input>
+		<input disabled="true" placeholder="{{item1.lvWireFollowRecord.perceptualPercent}}"></input>
 	</view>
   
   <view class="cu-form-group">
 		<view class="title">除颤阻抗(Ω)</view>
-		<input disabled="true" placeholder="{{item1.content19}}"></input>
+		<input disabled="true" placeholder="{{item1.lvWireFollowRecord.defibrillationImpedance}}"></input>
 	</view>
 
   <view class="cu-form-group">
 		<view class="title">输出电压(V)//脉宽(m)</view>
-		<input disabled="true" placeholder="{{item1.content20}}"></input>
+		<input disabled="true" placeholder="{{item1.lvWireFollowRecord.tdpw}}"></input>
 	</view>
 
   <view class="cu-form-group">
 		<view class="title">感知灵敏度(mv)</view>
-		<input disabled="true" placeholder="{{item1.content21}}"></input>
+		<input disabled="true" placeholder="{{item1.lvWireFollowRecord.perceptualSensitivity}}"></input>
 	</view>
 <view class="cu-form-group align-start  margin-top">
 		<view class="title">备注</view>
-		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.content22}}"></textarea>
+		<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.lvWireFollowRecord.note}}"></textarea>
 	</view>
 
-
+	
+    <view class="cu-bar bg-white margin-top">
+        <view class="action">
+          <text class="cuIcon-title text-blue"></text>
+          <text>电极信息-右心室</text>
+        </view>
+      </view>
+      
+      <view class="cu-form-group">
+              <view class="title">阈值(v)</view>
+              <input disabled="true" placeholder="{{item1.rvWireFollowRecord.thresholds}}"></input>
+          </view>
+      
+        <view class="cu-form-group">
+              <view class="title">脉宽(ms)</view>
+              <input disabled="true" placeholder="{{item1.rvWireFollowRecord.pulsewidth}}"></input>
+          </view>
+        
+        <view class="cu-form-group">
+              <view class="title">P//R波(mv)</view>
+              <input disabled="true" placeholder="{{item1.rvWireFollowRecord.prwave}}"></input>
+          </view>
+      
+        <view class="cu-form-group">
+              <view class="title">起搏阻抗(Ω)</view>
+              <input disabled="true" placeholder="{{item1.rvWireFollowRecord.pacingImpedance}}"></input>
+          </view>
+       <view class="cu-form-group">
+              <view class="title">起搏百分比(%)</view>
+              <input disabled="true" placeholder="{{item1.rvWireFollowRecord.pacingPercent}}"></input>
+          </view>
+      
+        <view class="cu-form-group">
+              <view class="title">感知百分比(%)</view>
+              <input disabled="true" placeholder="{{item1.rvWireFollowRecord.perceptualPercent}}"></input>
+          </view>
+        
+        <view class="cu-form-group">
+              <view class="title">除颤阻抗(Ω)</view>
+              <input disabled="true" placeholder="{{item1.rvWireFollowRecord.defibrillationImpedance}}"></input>
+          </view>
+      
+        <view class="cu-form-group">
+              <view class="title">输出电压(V)//脉宽(m)</view>
+              <input disabled="true" placeholder="{{item1.rvWireFollowRecord.tdpw}}"></input>
+          </view>
+      
+        <view class="cu-form-group">
+              <view class="title">感知灵敏度(mv)</view>
+              <input disabled="true" placeholder="{{item1.rvWireFollowRecord.perceptualSensitivity}}"></input>
+          </view>
+      <view class="cu-form-group align-start  margin-top">
+              <view class="title">备注</view>
+              <textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.rvWireFollowRecord.note}}"></textarea>
+          </view>
+	  
  
 	
 	

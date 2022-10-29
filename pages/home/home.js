@@ -73,7 +73,9 @@ Page({
                     console.log(res.data.data)
                     console.log("主页请求数据结束")
                     data = res.data.data
-
+                    that.setData({
+                    dataList: data
+                })
  
                 },
                 fail: function (error) {
@@ -92,9 +94,11 @@ Page({
     
     //跳转到详情页
     //Todo：传参
-    jumpToDetail() {
+    jumpToDetail(e) {
+           console.log("准备跳转到id"+e.currentTarget.dataset.id);
         wx.navigateTo({
-            url: '/pages/home/detail/detail',
+     
+            url: '/pages/home/detail/detail?data='+e.currentTarget.dataset.id,
         })
     },
     /**
