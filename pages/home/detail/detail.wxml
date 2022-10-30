@@ -6,11 +6,8 @@
 <!-- 审核待批注或者需修改 , 改为 !ifPassed-->
 <view wx:if="{{ifPassed}}">
 	<view class="cu-bar bg-white margin-top">
-		随访表
-	</view>
-	<view class="cu-bar bg-white ">
 		<view class="action">
-			图片上传
+			随访表图片上传
 		</view>
 		<view class="action">
 			{{img1.length}}/1
@@ -31,14 +28,9 @@
 
 	</view>
 
-
-
 	<view class="cu-bar bg-white margin-top">
-		心脏超声
-	</view>
-	<view class="cu-bar bg-white">
 		<view class="action">
-			图片上传
+			心脏超声图片上传
 		</view>
 		<view class="action">
 			{{img2.length}}/1
@@ -56,15 +48,13 @@
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
+
 	</view>
 
 
 	<view class="cu-bar bg-white margin-top">
-		额外图片
-	</view>
-	<view class="cu-bar bg-white ">
 		<view class="action">
-			图片上传
+			额外图片上传
 		</view>
 		<view class="action">
 			{{imgList.length}}/4
@@ -82,6 +72,7 @@
 				<text class="cuIcon-cameraadd"></text>
 			</view>
 		</view>
+
 	</view>
 	<view class="cu-form-group cu-bar bg-white margin-top">
 		<view class="title"></view>

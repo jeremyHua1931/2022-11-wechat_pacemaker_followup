@@ -50,29 +50,29 @@ Page({
         var that = this
         var data = []
         
-            wx.request({
-                url: app.globalData.url + '/followRecord/followlist',
-                data: {
-                    mrId: 54
-                },
-                method: 'POST',
-                header: {
-                    'content-type': 'application/json'
-                },
-                success: function (res) {
-                    console.log("主页请求数据开始")
-                    console.log(res.data.data)
-                    console.log("主页请求数据结束")
-                    data = that.transDateList(res.data.data)
-                    that.setData({
-                    dataList: data
-                })
+            // wx.request({
+            //     url: app.globalData.url + '/followRecord/followlist',
+            //     data: {
+            //         mrId: 54
+            //     },
+            //     method: 'POST',
+            //     header: {
+            //         'content-type': 'application/json'
+            //     },
+            //     success: function (res) {
+            //         console.log("主页请求数据开始")
+            //         console.log(res.data.data)
+            //         console.log("主页请求数据结束")
+            //         data = that.transDateList(res.data.data)
+            //         that.setData({
+            //         dataList: data
+            //     })
  
-                },
-                fail: function (error) {
+            //     },
+            //     fail: function (error) {
 
-                }
-            })
+            //     }
+            // })
 
 
 

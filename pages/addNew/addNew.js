@@ -20,6 +20,8 @@ Page({
   },
 
 
+
+
   //图片操作1
   ChooseImage1() {
     wx.chooseImage({
@@ -289,6 +291,7 @@ Page({
   },
 
 
+
   imgMsgTo:function(){
   
   },
@@ -297,6 +300,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+
+    //# 需要请求一次档案信息(最大随访次数 followCounts)或者app.global.data.mrinfo中有
+    //最终上传新纪录时需要+1
 
   },
 
