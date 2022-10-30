@@ -5,80 +5,13 @@
 
 <!-- 审核待批注或者需修改 , 改为 !ifPassed-->
 <view wx:if="{{ifPassed}}">
-	<view class="cu-bar bg-white margin-top">
-		<view class="action">
-			随访表图片上传
-		</view>
-		<view class="action">
-			{{img1.length}}/1
-		</view>
-	</view>
-	<view class="cu-form-group">
-		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{img1}}" wx:key="{{index}}" bindtap="ViewImage1" data-url="{{img1[index]}}">
-				<image src='{{img1[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg1" data-index="{{index}}">
-					<text class="cuIcon-close"></text>
-				</view>
-			</view>
-			<view class="solids" bindtap="ChooseImage1" wx:if="{{img1.length==0}}">
-				<text class="cuIcon-cameraadd"></text>
-			</view>
-		</view>
-
-	</view>
-
-	<view class="cu-bar bg-white margin-top">
-		<view class="action">
-			心脏超声图片上传
-		</view>
-		<view class="action">
-			{{img2.length}}/1
-		</view>
-	</view>
-	<view class="cu-form-group">
-		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{img2}}" wx:key="{{index}}" bindtap="ViewImage2" data-url="{{img2[index]}}">
-				<image src='{{img2[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg2" data-index="{{index}}">
-					<text class="cuIcon-close"></text>
-				</view>
-			</view>
-			<view class="solids" bindtap="ChooseImage2" wx:if="{{img2.length==0}}">
-				<text class="cuIcon-cameraadd"></text>
-			</view>
-		</view>
-
-	</view>
+	
 
 
-	<view class="cu-bar bg-white margin-top">
-		<view class="action">
-			额外图片上传
-		</view>
-		<view class="action">
-			{{imgList.length}}/4
-		</view>
-	</view>
-	<view class="cu-form-group">
-		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
-					<text class="cuIcon-close"></text>
-				</view>
-			</view>
-			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
-				<text class="cuIcon-cameraadd"></text>
-			</view>
-		</view>
 
-	</view>
-	<view class="cu-form-group cu-bar bg-white margin-top">
-		<view class="title"></view>
-		<input placeholder="" disabled="true"></input>
-		<button class="cu-btn bg-green shadow" bindtap="imgMsgTo">上传</button>
-	</view>
+
+
+
 </view>
 
 
@@ -131,6 +64,29 @@
 			<view class="title">临床表现</view>
 			<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.follow_record.performance}}"></textarea>
 		</view>
+    <view class="cu-bar bg-white">
+	<view class="action">
+		随访表图片上传
+	</view>
+	<view class="action">
+		{{img1.length}}/1
+	</view>
+</view>
+<view class="cu-form-group">
+	<view class="grid col-4 grid-square flex-sub">
+		<view class="bg-img" wx:for="{{img1}}" wx:key="{{index}}" bindtap="ViewImage1" data-url="{{img1[index]}}">
+			<image src='{{img1[index]}}' mode='aspectFill'></image>
+			<view class="cu-tag bg-red" catchtap="DelImg1" data-index="{{index}}">
+				<text class="cuIcon-close"></text>
+			</view>
+		</view>
+		<view class="solids" bindtap="ChooseImage1" wx:if="{{img1.length==0}}">
+			<text class="cuIcon-cameraadd"></text>
+		</view>
+	</view>
+
+</view>
+
 		<view class="cu-form-group  margin-top">
 			<view class="title">电池状态</view>
 			<checkbox class="round" checked="{{item1.follow_record.batteryState}}" disabled=""></checkbox>
@@ -156,6 +112,8 @@
 			<input disabled="true" placeholder="{{item1.follow_record.maxFrequency}}"></input>
 		</view>
 
+
+      
 		<view class="cu-form-group align-start  margin-top">
 			<view class="title">备注</view>
 			<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.follow_record.note}}"></textarea>
@@ -168,33 +126,8 @@
 			<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.follow_record.suggest}}"></textarea>
 		</view>
 
-		<view class="cu-bar bg-white margin-top">
-			<view class="action">
-				图片上传
-			</view>
-			<view class="action">
-				{{imgList.length}}/4
-			</view>
-		</view>
-		<view class="cu-form-group">
-			<view class="grid col-4 grid-square flex-sub">
-				<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
-					<image src='{{imgList[index]}}' mode='aspectFill'></image>
-					<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
-						<text class="cuIcon-close"></text>
-					</view>
-				</view>
-				<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
-					<text class="cuIcon-cameraadd"></text>
-				</view>
-			</view>
 
-		</view>
-		<view class="cu-form-group">
-			<view class="title"></view>
-			<input placeholder="" disabled="true"></input>
-			<button class="cu-btn bg-green shadow" bindtap="uploadImage">上传</button>
-		</view>
+		
 
 		<view class="cu-bar bg-white margin-top">
 			<view class="action">
@@ -206,7 +139,35 @@
 			<view class="title">心脏超声</view>
 			<radio checked="{{item1.heartUltrasound}}" disabled="true"></radio>
 		</view>
+    <view class="cu-form-group">
+		<view class="title">上传心脏超声图片</view>
+		<switch bindchange="changeDisplayImageUpload2"></switch>
+	</view>
 
+<view wx:if="{{displayImageUpload2}}">
+<view class="cu-bar bg-white">
+	<view class="action">
+		心脏超声图片上传
+	</view>
+	<view class="action">
+		{{img2.length}}/1
+	</view>
+</view>
+<view class="cu-form-group">
+	<view class="grid col-4 grid-square flex-sub">
+		<view class="bg-img" wx:for="{{img2}}" wx:key="{{index}}" bindtap="ViewImage2" data-url="{{img2[index]}}">
+			<image src='{{img2[index]}}' mode='aspectFill'></image>
+			<view class="cu-tag bg-red" catchtap="DelImg2" data-index="{{index}}">
+				<text class="cuIcon-close"></text>
+			</view>
+		</view>
+		<view class="solids" bindtap="ChooseImage2" wx:if="{{img2.length==0}}">
+			<text class="cuIcon-cameraadd"></text>
+		</view>
+	</view>
+
+</view>
+</view>
 		<view class="cu-bar bg-white margin-top">
 			<view class="action">
 				<text class="cuIcon-title text-yellow"></text>
@@ -318,7 +279,43 @@
 			<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.rvWireFollowRecord.note}}"></textarea>
 		</view>
 
+    <view class="cu-form-group margin-top">
+		<view class="title">上传额外图片</view>
+		<switch bindchange="changeDisplayImageUpload3"></switch>
+	</view>
 
+
+<view wx:if="{{displayImageUpload3}}">
+<view class="cu-bar bg-white">
+	<view class="action">
+		额外图片上传
+	</view>
+	<view class="action">
+		{{imgList.length}}/4
+	</view>
+</view>
+<view class="cu-form-group">
+	<view class="grid col-4 grid-square flex-sub">
+		<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+			<image src='{{imgList[index]}}' mode='aspectFill'></image>
+			<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+				<text class="cuIcon-close"></text>
+			</view>
+		</view>
+		<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+			<text class="cuIcon-cameraadd"></text>
+		</view>
+	</view>
+
+</view>
+
+</view>
+
+<view class="cu-form-group cu-bar bg-white margin-top">
+	<view class="title"></view>
+	<input placeholder="" disabled="true"></input>
+	<button class="cu-btn bg-green shadow" bindtap="imgMsgTo">上传</button>
+</view>
 
 
 		<!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->

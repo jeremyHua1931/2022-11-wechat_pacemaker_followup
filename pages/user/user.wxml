@@ -33,12 +33,30 @@
 
 
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
-    <view class="cu-item arrow">
+    <view  wx:if="{{userState=='已绑定档案'}}" class="cu-item arrow">
       <view class="content"  data-link="">
         <image src="/images/user_person.png" class="png" mode="aspectFit"></image>
-        <text class="text-grey">个人信息</text>
+        <text class="text-grey">当前状态：{{userState}}</text>
       </view>
     </view>
+
+
+    <view  wx:if="{{userState=='未登录'}}" class="cu-item arrow">
+      <view class="content"  data-link="">
+        <image src="/images/user_person.png" class="png" mode="aspectFit"></image>
+        <text class="text-red">当前状态：{{userState}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{userState=='未绑定档案'}}" class="cu-item arrow">
+      <view class="content"  data-link="">
+        <image src="/images/user_person.png" class="png" mode="aspectFit"></image>
+        <text class="text-red">当前状态：{{userState}}</text>
+      </view>
+    </view>
+
+
+
 
     <view class="cu-item arrow">
       <view class="content"   bindtap="ShowUserDoctorInfo" data-link="">
@@ -68,3 +86,17 @@
   
   <view class="cu-tabbar-height"></view>
 </scroll-view>
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">错误</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      用户尚未绑定记录，请联系医生。
+    </view>
+  </view>
+</view>

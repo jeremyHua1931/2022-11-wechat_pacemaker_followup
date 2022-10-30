@@ -91,8 +91,17 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
-    },
+       var state;
+       state = wx.getStorageSync('disableNavi')
+       console.log("检查是否需要跳回:"+state)
+       if(state=="noRecord"||state=="unlogin"){
+   wx.switchTab({
+           
+          url: '/pages/user/user'
+        })
+       }
+      
+      },
 
     /**
      * 生命周期函数--监听页面隐藏

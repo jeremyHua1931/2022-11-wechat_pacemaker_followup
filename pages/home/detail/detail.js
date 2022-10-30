@@ -33,6 +33,8 @@ Page({
             content20: "1",
             content21: "1212",
             content22: "这里是备注",
+            displayImageUpload2:false,
+    displayImageUpload3:false,
         },
         img1: [],
         img2: [],
@@ -41,6 +43,30 @@ Page({
         textareaAValue: '',
         textareaBValue: ''
     },
+      changeDisplayImageUpload2(e){
+    var state = e.detail.value
+    var that = this
+    this.setData({
+      displayImageUpload2:state
+    })
+    if(state==false){
+      this.setData({
+        img2:''
+      })
+    }
+  },
+    changeDisplayImageUpload3(e){
+      var that =this
+      var state = e.detail.value
+    this.setData({
+      displayImageUpload3:state
+    })
+        if(state==false){
+      this.setData({
+        imgList:''
+      })
+    }
+  },
     onLoad(options) {
         var that = this
         console.log('准备请求随访数据的id为' + options)

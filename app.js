@@ -18,6 +18,7 @@ App({
 
     // 启动app
     onLaunch() {
+      console.log("登录/档案绑定检查位设置")
         // 读取本地用户id, 判断是否登陆
         var that = this;
         wx.getStorage({
@@ -33,6 +34,7 @@ App({
                         console.log("2-用户userInfo昵称: " + res.data.nickName)
                         that.globalData.userInfo = res.data;
                         that.globalData.hasUserInfo = true
+                        
                         wx.getStorage({
                             key: 'userid',
                             success(res) {
@@ -54,6 +56,7 @@ App({
             fail: function (err) {
                 //用户未注册或者未登陆, 跳转user页面
                 console.log("用户未登陆, 跳转user页面登陆")
+                 wx.setStorageSync('disableNavi',"unlogin");
                 wx.switchTab({
                     url: '/pages/user/user',
                 })
