@@ -16,11 +16,25 @@ Page({
     imgList: [],
     modalName: null,
     textareaAValue: '',
-    textareaBValue: ''
+    textareaBValue: '',
+    displayImageUpload2:false,
+    displayImageUpload3:false,
   },
 
-
-
+  changeDisplayImageUpload2(e){
+     var state = e.detail.value
+    var that = this
+    this.setData({
+      displayImageUpload2:state
+    })
+  },
+    changeDisplayImageUpload3(e){
+      var that =this
+      var state = e.detail.value
+    this.setData({
+      displayImageUpload3:state
+    })
+  },
 
   //图片操作1
   ChooseImage1() {

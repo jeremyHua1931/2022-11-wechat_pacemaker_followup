@@ -1,4 +1,4 @@
-<view class="cu-bar bg-white margin-top">
+<view class="cu-bar bg-white">
 	<view class="action">
 		随访表图片上传
 	</view>
@@ -21,7 +21,14 @@
 
 </view>
 
-<view class="cu-bar bg-white margin-top">
+
+<view class="cu-form-group margin-top">
+		<view class="title">上传心脏超声图片</view>
+		<switch bindchange="changeDisplayImageUpload2"></switch>
+	</view>
+
+<view wx:if="{{displayImageUpload2}}">
+<view class="cu-bar bg-white">
 	<view class="action">
 		心脏超声图片上传
 	</view>
@@ -43,9 +50,16 @@
 	</view>
 
 </view>
+</view>
+
+<view class="cu-form-group margin-top">
+		<view class="title">上传额外图片</view>
+		<switch bindchange="changeDisplayImageUpload3"></switch>
+	</view>
 
 
-<view class="cu-bar bg-white margin-top">
+<view wx:if="{{displayImageUpload3}}">
+<view class="cu-bar bg-white">
 	<view class="action">
 		额外图片上传
 	</view>
@@ -67,6 +81,9 @@
 	</view>
 
 </view>
+
+</view>
+
 <view class="cu-form-group cu-bar bg-white margin-top">
 	<view class="title"></view>
 	<input placeholder="" disabled="true"></input>
