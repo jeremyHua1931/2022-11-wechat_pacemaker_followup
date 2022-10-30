@@ -11,6 +11,7 @@ Page({
     data: {
 
         dataList: [ {
+            "time": "2022-10-28",
             "date": "2022-10-28",
             "pacemakerPattern": "1",
             "image": null,
@@ -28,7 +29,6 @@ Page({
             "id": 86,
             "batteryLife": 1
         }],
-
     },
 
       
@@ -47,33 +47,6 @@ Page({
     onReady() {
         // this.sleep(5000);
         console.log("主页数据加载")
-        var that = this
-        var data = []
-        
-            // wx.request({
-            //     url: app.globalData.url + '/followRecord/followlist',
-            //     data: {
-            //         mrId: 54
-            //     },
-            //     method: 'POST',
-            //     header: {
-            //         'content-type': 'application/json'
-            //     },
-            //     success: function (res) {
-            //         console.log("主页请求数据开始")
-            //         console.log(res.data.data)
-            //         console.log("主页请求数据结束")
-            //         data = that.transDateList(res.data.data)
-            //         that.setData({
-            //         dataList: data
-            //     })
- 
-            //     },
-            //     fail: function (error) {
-
-            //     }
-            // })
-
 
 
     },
@@ -91,12 +64,36 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        var that=this
        var state;
        state = wx.getStorageSync('disableNavi')
        console.log("检查是否需要跳回:"+state)
        if(state=="noRecord"||state=="unlogin"){
-   wx.switchTab({
-           
+            wx.request({
+                url: app.globalData.url + '/followRecord/followlist',
+                data: {
+                    mrId: 54
+                },
+                method: 'POST',
+                header: {
+                    'content-type': 'application/json'
+                },
+                success: function (res) {
+                    console.log("主页请求数据开始")
+                    console.log(res.data.data)
+                    console.log("主页请求数据结束")
+                    var data = that.transDateList(res.data.data)
+                    that.setData({
+                    dataList: data
+                })
+ 
+                },
+                fail: function (error) {
+
+                }
+            })
+  
+        wx.switchTab({         
           url: '/pages/user/user'
         })
        }

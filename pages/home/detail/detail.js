@@ -1,8 +1,6 @@
 const app = getApp();
 var uploadImage = require('../../../utils/uploadFile.js');
 var util = require('../../../utils/util.js');
-
-
 Page({
     data: {
         id: 0,

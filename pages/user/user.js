@@ -15,37 +15,37 @@ Component({
     },
 
     methods: {
-       onLoad(options) {
-           var state;
-           var that =this;
-       state = wx.getStorageSync('disableNavi')
-         console.log(state)
-         if(state=="noRecord"){
-           this.showModal()
-           that.setData({
-             userState:"未绑定档案"
-           })
-         }
-         if(state=="unlogin"){
-          that.setData({
-             userState:"未登录"
-           })
-          wx.showToast({
+        onLoad(options) {
+            var state;
+            var that = this;
+            state = wx.getStorageSync('disableNavi')
+            console.log(state)
+            if (state == "noRecord") {
+                this.showModal()
+                that.setData({
+                    userState: "未绑定档案"
+                })
+            }
+            if (state == "unlogin") {
+                that.setData({
+                    userState: "未登录"
+                })
+                wx.showToast({
                     title: '请先登录',
                     icon: 'error'
                 })
-         }
-       },
-      showModal() {
-    this.setData({
-      modalName: "Modal"
-    })
-  },
-  hideModal() {
-    this.setData({
-      modalName: null
-    })
-  },
+            }
+        },
+        showModal() {
+            this.setData({
+                modalName: "Modal"
+            })
+        },
+        hideModal() {
+            this.setData({
+                modalName: null
+            })
+        },
         doAuthorization: function (e) {
             console.log("开始注册: ")
             var ifYes = true
@@ -135,7 +135,7 @@ Component({
                     app.globalData.userid = res.data.id;
                     // 查询是否有绑定信息
                     that.getmrld(res.data.id);
-                     wx.setStorageSync('disableNavi', "noRecord");
+                    wx.setStorageSync('disableNavi', "noRecord");
                 },
                 fail: function (error) {
 
@@ -146,35 +146,36 @@ Component({
         //查询档案id
         // apifox  查询档案信息
         getmrld: function (userid) {
-          var that =this
+            var that = this
             console.log("2-未登录(或未注册)用户查询绑定的档案信息")
             wx.request({
                 url: app.globalData.url + '/user/medicalRecord',
                 data: {
                     userId: userid
-          
+
                 },
                 method: 'POST',
                 header: {
                     'content-type': 'application/json'
                 },
                 success: function (res) {
-                  if(res.data.code==8){
-                    
-                    wx.setStorageSync('disableNavi',"noRecord");
-                     that.setData({
-             userState:"未绑定档案"
-           })
-                    that.showModal()
-                    
-                  }else{
-                    console.log("档案信息: " + res.data.id)
-                    console.log(res.data)
-                    wx.setStorageSync('disableNavi', false);
-                    that.setData({
-             userState:"已绑定档案"
-           })
-                  }
+                    console.log(res)
+                    if (res.data.code == 8) {
+
+                        wx.setStorageSync('disableNavi', "noRecord");
+                        that.setData({
+                            userState: "未绑定档案"
+                        })
+                        that.showModal()
+
+                    } else {
+                        console.log("档案信息: " + res.data.id)
+                        console.log(res.data)
+                        wx.setStorageSync('disableNavi', false);
+                        that.setData({
+                            userState: "已绑定档案"
+                        })
+                    }
 
                 },
                 fail: function (error) {
@@ -222,6 +223,6 @@ Component({
                 }
             })
         },
-       
+
     }
 })
