@@ -22,11 +22,16 @@ Page({
   },
 
   changeDisplayImageUpload2(e){
-     var state = e.detail.value
+    var state = e.detail.value
     var that = this
     this.setData({
       displayImageUpload2:state
     })
+    if(state==false){
+      this.setData({
+        img2:''
+      })
+    }
   },
     changeDisplayImageUpload3(e){
       var that =this
@@ -34,6 +39,11 @@ Page({
     this.setData({
       displayImageUpload3:state
     })
+        if(state==false){
+      this.setData({
+        imgList:''
+      })
+    }
   },
 
   //图片操作1
