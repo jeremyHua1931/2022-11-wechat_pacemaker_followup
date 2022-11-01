@@ -83,12 +83,11 @@
 		</view>
         </view>
     <view class="cu-bar bg-white">
-	<view class="action">
-		随访表图片上传
-	</view>
-	<view class="action">
-		{{img1.length}}/1
-	</view>
+
+    
+<view class="cu-bar bg-white">
+	<view class="action">随访表图片上传  ({{img1.length}}/1）</view>
+</view>
 </view>
 <view class="cu-form-group">
 	<view class="grid col-4 grid-square flex-sub">
@@ -102,7 +101,6 @@
 			<text class="cuIcon-cameraadd"></text>
 		</view>
 	</view>
-
 </view>
 
 
@@ -163,20 +161,14 @@
 			<view class="title">心脏超声</view>
 			<radio checked="{{item1.heartUltrasound}}" disabled="true"></radio>
 		</view>
+
     <view class="cu-form-group">
-		<view class="title">上传心脏超声图片</view>
+		<view class="title">上传心脏超声图片 ({{img2.length}}/1）</view>
 		<switch bindchange="changeDisplayImageUpload2"></switch>
 	</view>
 
+
 <view wx:if="{{displayImageUpload2}}">
-<view class="cu-bar bg-white">
-	<view class="action">
-		心脏超声图片上传
-	</view>
-	<view class="action">
-		{{img2.length}}/1
-	</view>
-</view>
 <view class="cu-form-group">
 	<view class="grid col-4 grid-square flex-sub">
 		<view class="bg-img" wx:for="{{img2}}" wx:key="{{index}}" bindtap="ViewImage2" data-url="{{img2[index]}}">
@@ -189,7 +181,6 @@
 			<text class="cuIcon-cameraadd"></text>
 		</view>
 	</view>
-
 </view>
 </view>
 		
@@ -380,7 +371,7 @@
 <view wx:if="{{displayImageUpload3}}">
 <view class="cu-bar bg-white">
 	<view class="action">
-		额外图片上传
+		上传额外图片  ({{imgList.length}}/4)
 	</view>
 	<view class="action">
 		{{imgList.length}}/4
@@ -394,19 +385,16 @@
 				<text class="cuIcon-close"></text>
 			</view>
 		</view>
-		<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
-			<text class="cuIcon-cameraadd"></text>
-		</view>
+        <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+                <text class="cuIcon-cameraadd"></text>
+        </view> 
 	</view>
-
 </view>
 
 </view>
 
 <view class="cu-form-group cu-bar bg-white margin-top">
-	<view class="title"></view>
-	<input placeholder="" disabled="true"></input>
-	<button class="cu-btn bg-green shadow" bindtap="imgMsgTo">上传</button>
+	<button class="cu-btn bg-blue shadow" bindtap="imgMsgTo">提交</button>
 </view>
 
 

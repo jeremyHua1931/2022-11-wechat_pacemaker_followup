@@ -276,16 +276,16 @@ Page({
         console.log("   4-imgListUpload: ")
         console.log(that.data.imgListUpload)
 
-        // if (that.data.img1Upload.length == 0) {
-        //     wx.showModal({
-        //         title: '请确认',
-        //         content: '必须添加随访表基本图片',
-        //         cancelText: '返回',
-        //         confirmText: '继续编辑',
-        //         success: res => {}
-        //     })
-        //     return;
-        // }
+        if (that.data.img1Upload.length == 0) {
+            wx.showModal({
+                title: '请确认',
+                content: '必须添加随访表基本图片',
+                cancelText: '返回',
+                confirmText: '继续编辑',
+                success: res => {}
+            })
+            return;
+        }
     },
 
     /**

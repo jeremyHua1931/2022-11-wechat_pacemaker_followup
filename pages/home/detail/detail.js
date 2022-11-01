@@ -3,7 +3,6 @@ var uploadImage = require('../../../utils/uploadFile.js');
 var util = require('../../../utils/util.js');
 Page({
     data: {
-      
     basics: 0,
     numList: [{
       name: '审核中'
@@ -48,6 +47,10 @@ Page({
         img1: [],
         img2: [],
         imgList: [],
+        imgListUpload: [],
+        img1Upload: [],
+        img2Upload: [],
+
         modalName: null,
         textareaAValue: '',
         textareaBValue: ''
@@ -67,7 +70,8 @@ Page({
     })
     if(state==false){
       this.setData({
-        img2:''
+        img2:'',
+        img2Upload:'',
       })
     }
   },
@@ -79,7 +83,8 @@ Page({
     })
         if(state==false){
       this.setData({
-        imgList:''
+        imgList:'',
+        imgListUpload:'',
       })
     }
   },
@@ -223,8 +228,9 @@ Page({
 
 
 
-    //图片操作1
+//图片操作1
     ChooseImage1() {
+        var that = this
         wx.chooseImage({
             count: 1, //默认9
             sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
@@ -234,26 +240,29 @@ Page({
                     this.setData({
                         img1: res.tempFilePaths
                     })
-
                     //上传到阿里云
-                    // uploadImage(res.tempFilePaths, 'image/pacemaker/',
-                    //   function (result) {
-                    //     console.log("======上传成功图片地址为：", result);
-                    //     wx.hideLoading();
-                    //     wx.showToast({
-                    //       title: '上传成功',
-                    //       icon: 'success'
-                    //     })
-                    //   },
-                    //   function (result) {
-                    //     console.log("======上传失败======", result);
-                    //     wx.hideLoading()
-                    //     wx.showToast({
-                    //       title: '上传失败',
-                    //       icon: 'error'
-                    //     })
-                    //   }
-                    // )
+                    var dir = app.globalData.userid + "/img1/";
+                    uploadImage(res.tempFilePaths[0], dir,
+                        function (result) {
+                            console.log("img1上传成功图片地址为：", result);
+                            that.setData({
+                                img1Upload: result
+                            })
+                            wx.hideLoading();
+                            wx.showToast({
+                                title: '上传成功',
+                                icon: 'success'
+                            })
+                        },
+                        function (result) {
+                            console.log(" img1上传失=>", result);
+                            wx.hideLoading()
+                            wx.showToast({
+                                title: '上传失败',
+                                icon: 'error'
+                            })
+                        }
+                    )
                 }
             }
         });
@@ -273,37 +282,17 @@ Page({
             success: res => {
                 if (res.confirm) {
                     this.setData({
-                        img1: ''
+                        img1: '',
+                        img1Upload: '',
                     })
                 }
             }
         })
     },
-    uploadImage3: function () {
-        // wx.request({
-        //   url: app.globalData.url + '/followRecord/add',
-        //   data: {
-        //     image: 54
-        //   },
-        //   method: 'POST',
-        //   header: {
-        //     'content-type': 'application/json'
-        //   },
-        //   success: function (res) {
-        //     console.log(res)
-        //     wx.showToast({
-        //       title: '数据已写入',
-        //       icon: 'success'
-        //     })
-        //   },
-        //   fail: function (error) {
-
-        //   }
-        // })
-    },
 
     //图片操作2
     ChooseImage2() {
+        var that = this
         wx.chooseImage({
             count: 1, //默认9
             sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
@@ -313,26 +302,29 @@ Page({
                     this.setData({
                         img2: res.tempFilePaths
                     })
-
                     //上传到阿里云
-                    // uploadImage(res.tempFilePaths, 'image/pacemaker/',
-                    //   function (result) {
-                    //     console.log("======上传成功图片地址为：", result);
-                    //     wx.hideLoading();
-                    //     wx.showToast({
-                    //       title: '上传成功',
-                    //       icon: 'success'
-                    //     })
-                    //   },
-                    //   function (result) {
-                    //     console.log("======上传失败======", result);
-                    //     wx.hideLoading()
-                    //     wx.showToast({
-                    //       title: '上传失败',
-                    //       icon: 'error'
-                    //     })
-                    //   }
-                    // )
+                    var dir = app.globalData.userid + "/img2/";
+                    uploadImage(res.tempFilePaths[0], dir,
+                        function (result) {
+                            console.log("img2上传成功图片地址为：", result);
+                            that.setData({
+                                img2Upload: result
+                            })
+                            wx.hideLoading();
+                            wx.showToast({
+                                title: '上传成功',
+                                icon: 'success'
+                            })
+                        },
+                        function (result) {
+                            console.log(" img2上传失=>", result);
+                            wx.hideLoading()
+                            wx.showToast({
+                                title: '上传失败',
+                                icon: 'error'
+                            })
+                        }
+                    )
                 }
             }
         });
@@ -352,103 +344,76 @@ Page({
             success: res => {
                 if (res.confirm) {
                     this.setData({
-                        img2: ''
+                        img2: '',
+                        img2Upload: '',
                     })
                 }
             }
         })
     },
 
-    uploadImage2: function () {
-        // wx.request({
-        //   url: app.globalData.url + '/followRecord/add',
-        //   data: {
-        //     image: 54
-        //   },
-        //   method: 'POST',
-        //   header: {
-        //     'content-type': 'application/json'
-        //   },
-        //   success: function (res) {
-        //     console.log(res)
-        //     wx.showToast({
-        //       title: '数据已写入',
-        //       icon: 'success'
-        //     })
-        //   },
-        //   fail: function (error) {
-
-        //   }
-        // })
-    },
-
-
-    imgMsgTo: function () {
-
-    },
 
 
     //图片操作3
 
     ChooseImage() {
+        var that = this
         wx.chooseImage({
             count: 4, //默认9
             sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album'], //从相册选择
             success: (res) => {
                 if (this.data.imgList.length != 0) {
+                    that.UpLoad3(res.tempFilePaths[0], this.data.imgList.length);
                     this.setData({
                         imgList: this.data.imgList.concat(res.tempFilePaths)
                     })
-
-                    //上传到阿里云
-                    uploadImage(res.tempFilePaths, 'image/pacemaker/',
-                        function (result) {
-                            console.log("======上传成功图片地址为：", result);
-                            wx.hideLoading();
-                            wx.showToast({
-                                title: '上传成功',
-                                icon: 'success'
-                            })
-                        },
-                        function (result) {
-                            console.log("======上传失败======", result);
-                            wx.hideLoading()
-                            wx.showToast({
-                                title: '上传失败',
-                                icon: 'error'
-                            })
-                        }
-                    )
-
                 } else {
+                    that.UpLoad3(res.tempFilePaths[0], this.data.imgList.length);
                     this.setData({
                         imgList: res.tempFilePaths
                     })
-
-                    //上传到阿里云
-                    uploadImage(res.tempFilePaths, 'image/pacemaker/',
-                        function (result) {
-                            console.log("======上传成功图片地址为：", result);
-                            wx.hideLoading();
-                            wx.showToast({
-                                title: '上传成功',
-                                icon: 'success'
-                            })
-                        },
-                        function (result) {
-                            console.log("======上传失败======", result);
-                            wx.hideLoading()
-                            wx.showToast({
-                                title: '上传失败',
-                                icon: 'error'
-                            })
-                        }
-                    )
                 }
             }
         });
     },
+
+    UpLoad3: function (path, index) {
+        var that = this;
+        var dir = app.globalData.userid + "/";
+        uploadImage(path, dir,
+            function (result) {
+                console.log("imgList中第 " + (index + 1) + " 图片上传成功图片地址为：", result);
+                if (that.data.imgListUpload.length != 0) {
+                    var data = ["1"]
+                    data[0] = result
+                    that.setData({
+                        imgListUpload: that.data.imgListUpload.concat(data)
+                    })
+                } else {
+                    var data = ["1"]
+                    data[0] = result
+                    that.setData({
+                        imgListUpload: data
+                    })
+                }
+                wx.hideLoading();
+                wx.showToast({
+                    title: '上传成功',
+                    icon: 'success'
+                })
+            },
+            function (result) {
+                wx.hideLoading()
+                wx.showToast({
+                    title: '上传失败',
+                    icon: 'error'
+                })
+            }
+        )
+    },
+
+
     ViewImage(e) {
         wx.previewImage({
             urls: this.data.imgList,
@@ -464,35 +429,40 @@ Page({
             success: res => {
                 if (res.confirm) {
                     this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+                    this.data.imgListUpload.splice(e.currentTarget.dataset.index, 1);
                     this.setData({
-                        imgList: this.data.imgList
+                        imgList: this.data.imgList,
+                        imgListUpload:this.data.imgListUpload
                     })
                 }
             }
         })
     },
 
-    uploadImage3: function () {
-        // wx.request({
-        //   url: app.globalData.url + '/followRecord/add',
-        //   data: {
-        //     image: 54
-        //   },
-        //   method: 'POST',
-        //   header: {
-        //     'content-type': 'application/json'
-        //   },
-        //   success: function (res) {
-        //     console.log(res)
-        //     wx.showToast({
-        //       title: '数据已写入',
-        //       icon: 'success'
-        //     })
-        //   },
-        //   fail: function (error) {
 
-        //   }
-        // })
+
+    imgMsgTo: function () {
+        var that = this;
+        console.log("==>记录开始添加到数据库中")
+        console.log("   1-img1Upload: ")
+        console.log(that.data.img1Upload)
+        console.log("   2-img2Upload: ")
+        console.log(that.data.img2Upload)
+        console.log("   3-imgList: ")
+        console.log(that.data.imgList)
+        console.log("   4-imgListUpload: ")
+        console.log(that.data.imgListUpload)
+
+        if (that.data.img1Upload.length == 0) {
+            wx.showModal({
+                title: '请确认',
+                content: '必须添加随访表基本图片',
+                cancelText: '返回',
+                confirmText: '继续编辑',
+                success: res => {}
+            })
+            return;
+        }
     },
 
 

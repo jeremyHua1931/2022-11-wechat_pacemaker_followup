@@ -61,13 +61,6 @@
 </view>
 
 
-
-
-<!-- <view class="cu-form-group cu-bar bg-white ">
-    <input placeholder="" disabled="true"></input>
-	<button class="cu-btn bg-green shadow" style="width:80px" bindtap="imgListUpLoad">确 定</button>
-</view> -->
-
 </view>
 
 <view class="cu-form-group cu-bar bg-white margin-top">
