@@ -1,8 +1,9 @@
 {
     "pages": [
-        "pages/home/home",
-        "pages/user/user",
+        "pages/blank/blank",
         "pages/addNew/addNew",
+        "pages/user/user",
+        "pages/home/home",
         "pages/home/detail/detail"
     ],
     "window": {

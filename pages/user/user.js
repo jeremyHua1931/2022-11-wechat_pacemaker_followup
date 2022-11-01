@@ -15,22 +15,21 @@ Component({
     },
 
     methods: {
-        onShow(){
-                  
-           
+        onShow() {
+
+
         },
         onLoad(options) {
             var userid = app.globalData.userid;
-                  console.log("当前的userid为:"+userid)
-            
-            var state;
+            console.log("user.js/onload()  userid: "+ app.globalData.userid)
             var that = this;
+            var state;
             state = wx.getStorageSync('disableNavi')
-            console.log(state)
             if (state == "noRecord") {
                 this.showModal()
                 that.setData({
-                    userState: "未绑定档案"
+                    userState: "未绑定档案",
+                    // hasUserInfo: true
                 })
             }
             if (state == "unlogin") {
@@ -42,7 +41,7 @@ Component({
                     icon: 'error'
                 })
             }
-             if(userid>=1){
+            if (userid >= 1) {
                 this.getmrld(userid)
             }
         },
@@ -57,14 +56,14 @@ Component({
             })
         },
         doAuthorization: function (e) {
-            console.log("开始注册: ")
+            console.log("   2-开始注册: ")
             var ifYes = true
             var that = this
             wx.getUserProfile({
                 desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
                 success: (res) => {
-                    console.log("微信用户userInfo获取成功, 如下: ")
-                    console.log("用户userInfo昵称: " + res.userInfo.nickName);
+                    console.log("       微信用户userInfo获取成功, 如下: ")
+                    console.log("       用户userInfo昵称: " + res.userInfo.nickName);
                     console.log(res.userInfo)
                     this.setData({
                         userInfo: res.userInfo,
@@ -87,14 +86,14 @@ Component({
             //授权
             wx.login({
                 success: function (res) {
-                    console.log('login:code: ' + res.code)
+                    // console.log('login:code: ' + res.code)
                     var APPID = app.globalData.appid;
                     var SECRET = app.globalData.appsecret;
                     wx.request({
                         url: `https://api.weixin.qq.com/sns/jscode2session?appid=${APPID}&secret=${SECRET}&js_code=${res.code}&grant_type=authorization_code`,
                         success: (res) => {
-                            console.log("获取用户唯一辨识openid获取成功")
-                            console.log("openid: " + res.data.openid)
+                            console.log("   3-获取用户唯一辨识openid获取成功")
+                            console.log("       openid: " + res.data.openid)
                             //获取到你的openid
                             that.setData({
                                 userID: res.data.openid
@@ -118,14 +117,13 @@ Component({
                             })
                         }
                     })
-
                 }
             })
         },
 
         register: function () {
             var that = this
-            console.log("开始注册用户")
+            console.log("   4-开始注册用户")
             wx.request({
                 url: app.globalData.url + "/user/add",
                 data: {
@@ -140,16 +138,14 @@ Component({
                     'content-type': 'application/json'
                 },
                 success: function (res) {
-                    console.log("1-注册成功, uerid: " + res.data.id)
+                    console.log("   5-注册成功, uerid: " + res.data.id)
                     wx.setStorageSync('userid', res.data.id);
                     app.globalData.userid = res.data.id;
                     // 查询是否有绑定信息
                     that.getmrld(res.data.id);
                     wx.setStorageSync('disableNavi', "noRecord");
                 },
-                fail: function (error) {
-
-                }
+                fail: function (error) {}
             })
         },
 
@@ -157,43 +153,39 @@ Component({
         // apifox  查询档案信息
         getmrld: function (userid) {
             var that = this
-            console.log("2-未登录(或未注册)用户查询绑定的档案信息")
+            console.log("   6-未登录用户查询绑定的档案信息")
             wx.request({
                 url: app.globalData.url + '/user/medicalRecord',
                 data: {
                     // userId: userid
-                     userId: 53
+                    userId: 53
                 },
                 method: 'POST',
                 header: {
                     'content-type': 'application/json'
                 },
                 success: function (res) {
-                    console.log(res)
+                    // console.log(res)
                     if (res.data.code == 8) {
-
                         wx.setStorageSync('disableNavi', "noRecord");
                         that.setData({
                             userState: "未绑定档案"
                         })
                         that.showModal()
-
                     } else {
-                        console.log("档案信息: " + res.data.id)
-                        console.log(res.data)
+                        console.log("       档案信息id: " + res.data.id)
+                        app.globalData.mrinfo = res.data
                         wx.setStorageSync('disableNavi', false);
                         that.setData({
                             userState: "已绑定档案"
                         })
+                        console.log("！！未登录用户个人信息与档案信息查询结束")
+                        console.log("！！！信息验证完毕")
                     }
-
                 },
-                fail: function (error) {
-
-                }
+                fail: function (error) {}
             })
         },
-
 
         // 事件处理函数
         onShow: function () {

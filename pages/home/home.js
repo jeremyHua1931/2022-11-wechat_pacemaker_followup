@@ -10,34 +10,16 @@ Page({
      */
     data: {
 
-        dataList: [ {
-            "time": "2022-10-28",
-            "date": "2022-10-28",
-            "pacemakerPattern": "1",
-            "image": null,
-            "note": null,
-            "maxFrequency": 1.0,
-            "frCount": 28,
-            "suggest": null,
-            "type": 0,
-            "minFrequency": 1.0,
-            "doctor": 53,
-            "doctorName": "",
-            "mrId": 54,
-            "performance": "1",
-            "batteryState": 0,
-            "id": 86,
-            "batteryLife": 1
-        }],
+        dataList: [],
     },
 
-      
+
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-       
+
     },
 
 
@@ -50,56 +32,55 @@ Page({
 
 
     },
-    
+
     //跳转到详情页
     //Todo：传参
     jumpToDetail(e) {
-           console.log("准备跳转到id"+e.currentTarget.dataset.id);
+        console.log("准备跳转到id" + e.currentTarget.dataset.id);
         wx.navigateTo({
-     
-            url: '/pages/home/detail/detail?data='+e.currentTarget.dataset.id,
+            url: '/pages/home/detail/detail?data=' + e.currentTarget.dataset.id,
         })
     },
     /**
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        var that=this
-       var state;
-       state = wx.getStorageSync('disableNavi')
-       console.log("检查是否需要跳回:"+state)
-             wx.request({
-                url: app.globalData.url + '/followRecord/followlist',
-                data: {
-                    mrId: 54
-                },
-                method: 'POST',
-                header: {
-                    'content-type': 'application/json'
-                },
-                success: function (res) {
-                    console.log("主页请求数据开始")
-                    console.log(res.data.data)
-                    console.log("主页请求数据结束")
-                    var data = that.transDateList(res.data.data)
-                    that.setData({
+        var that = this
+        var state;
+        state = wx.getStorageSync('disableNavi')
+        // console.log("检查是否需要跳回:" + state)
+        // console.log("主页请求档案" )
+        console.log(app.globalData.mrinfo)
+        wx.request({
+            url: app.globalData.url + '/followRecord/followlist',
+            data: {
+                mrId: app.globalData.mrinfo.id
+            },
+            method: 'POST',
+            header: {
+                'content-type': 'application/json'
+            },
+            success: function (res) {
+                // console.log("主页请求数据开始")
+                // console.log(res.data.data)
+                // console.log("主页请求数据结束")
+                var data = that.transDateList(res.data.data)
+                that.setData({
                     dataList: data
                 })
- 
-                },
-                fail: function (error) {
-                    console.log("主页请求数据失败")
-                }
-            })
-       if(state=="noRecord"||state=="unlogin"){
-      
-  
-        wx.switchTab({         
-          url: '/pages/user/user'
+
+            },
+            fail: function (error) {
+                console.log("主页请求数据失败")
+            }
         })
-       }
-      
-      },
+        if (state == "noRecord" || state == "unlogin") {
+            wx.switchTab({
+                url: '/pages/user/user'
+            })
+        }
+
+    },
 
     /**
      * 生命周期函数--监听页面隐藏
@@ -141,18 +122,18 @@ Page({
     ,
 
     // 往dataList中添加类似 "time: 22-10-15"的属性
-    transDateList:function(data){
-        var result=[]
+    transDateList: function (data) {
+        var result = []
 
-        console.log("开始处理数据")
+        // console.log("开始处理数据")
         // console.log(data)
 
-        for(var x in data){
+        for (var x in data) {
             // console.log(String(data[x].date).substring(2,10))
-            data[x].time1=String(data[x].date).substring(2,10);
-            data[x].time2=String(data[x].date).substring(0,10);
+            data[x].time1 = String(data[x].date).substring(2, 10);
+            data[x].time2 = String(data[x].date).substring(0, 10);
         }
-        console.log(data)
+        // console.log(data)
         return data;
 
     }
