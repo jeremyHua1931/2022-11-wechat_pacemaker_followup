@@ -168,7 +168,11 @@
 
 </view>
 </view>
-		<view class="cu-bar bg-white margin-top">
+		
+
+
+<view wx:if="{{item1.lvWireFollowRecord!='0'}}">		
+        <view class="cu-bar bg-white margin-top">
 			<view class="action">
 				<text class="cuIcon-title text-yellow"></text>
 				<text>电极信息-左心室</text>
@@ -223,7 +227,11 @@
 			<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.lvWireFollowRecord.note}}"></textarea>
 		</view>
 
+</view>
 
+
+
+<view wx:if="{{item1.rvWireFollowRecord!='0'}}">	
 		<view class="cu-bar bg-white margin-top">
 			<view class="action">
 				<text class="cuIcon-title text-blue"></text>
@@ -278,6 +286,66 @@
 			<view class="title">备注</view>
 			<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.rvWireFollowRecord.note}}"></textarea>
 		</view>
+
+</view>
+
+
+<view wx:if="{{item1.raWireFollowRecord!='0'}}">	
+	<view class="cu-bar bg-white margin-top">
+			<view class="action">
+				<text class="cuIcon-title text-red"></text>
+				<text>电极信息-右心房</text>
+			</view>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">阈值(v)</view>
+			<input disabled="true" placeholder="{{item1.raWireFollowRecord.thresholds}}"></input>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">脉宽(ms)</view>
+			<input disabled="true" placeholder="{{item1.raWireFollowRecord.pulsewidth}}"></input>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">P//R波(mv)</view>
+			<input disabled="true" placeholder="{{item1.raWireFollowRecord.prwave}}"></input>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">起搏阻抗(Ω)</view>
+			<input disabled="true" placeholder="{{item1.raWireFollowRecord.pacingImpedance}}"></input>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">起搏百分比(%)</view>
+			<input disabled="true" placeholder="{{item1.raWireFollowRecord.pacingPercent}}"></input>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">感知百分比(%)</view>
+			<input disabled="true" placeholder="{{item1.raWireFollowRecord.perceptualPercent}}"></input>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">除颤阻抗(Ω)</view>
+			<input disabled="true" placeholder="{{item1.raWireFollowRecord.defibrillationImpedance}}"></input>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">输出电压(V)//脉宽(m)</view>
+			<input disabled="true" placeholder="{{item1.raWireFollowRecord.tdpw}}"></input>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">感知灵敏度(mv)</view>
+			<input disabled="true" placeholder="{{item1.raWireFollowRecord.perceptualSensitivity}}"></input>
+		</view>
+		<view class="cu-form-group align-start  margin-top">
+			<view class="title">备注</view>
+			<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.raWireFollowRecord.note}}"></textarea>
+		</view>
+</view>
 
     <view class="cu-form-group margin-top">
 		<view class="title">上传额外图片</view>

@@ -88,7 +88,7 @@ Page({
                     console.log("请求详细数据结束")
                     // <!-- todo:date的切分 -->
                     var data = {
-                        "rvWireFollowRecord": {
+                        "rvWireFollowRecord": res.data.rvWireFollowRecord==0?'0':{
                             "id": res.data.rvWireFollowRecord.id,
                             "frId": res.data.rvWireFollowRecord.frId,
                             "position": res.data.rvWireFollowRecord.position,
@@ -103,7 +103,22 @@ Page({
                             "perceptualSensitivity": res.data.rvWireFollowRecord.perceptualSensitivity,
                             "note": res.data.rvWireFollowRecord.note == null ? "暂无" : res.data.rvWireFollowRecord.note,
                         },
-                        "lvWireFollowRecord": {
+                        "raWireFollowRecord":  res.data.raWireFollowRecord==0?'0':{
+                            "id": res.data.raWireFollowRecord.id,
+                            "frId": res.data.raWireFollowRecord.frId,
+                            "position": res.data.raWireFollowRecord.position,
+                            "thresholds": res.data.raWireFollowRecord.thresholds,
+                            "pulsewidth": res.data.raWireFollowRecord.pulsewidth,
+                            "prwave": res.data.raWireFollowRecord.prwave,
+                            "pacingImpedance": res.data.raWireFollowRecord.pacingImpedance,
+                            "pacingPercent": res.data.raWireFollowRecord.pacingPercent,
+                            "perceptualPercent": res.data.raWireFollowRecord.perceptualPercent,
+                            "defibrillationImpedance": res.data.raWireFollowRecord.defibrillationImpedance,
+                            "tdpw": res.data.raWireFollowRecord.tdpw,
+                            "perceptualSensitivity": res.data.raWireFollowRecord.perceptualSensitivity,
+                            "note": res.data.raWireFollowRecord.note == null ? "暂无" : res.data.raWireFollowRecord.note,
+                        },
+                        "lvWireFollowRecord":  res.data.lvWireFollowRecord==0?'0':{
                             "id": res.data.lvWireFollowRecord.id,
                             "frId": res.data.lvWireFollowRecord.frId,
                             "position": res.data.lvWireFollowRecord.position,
