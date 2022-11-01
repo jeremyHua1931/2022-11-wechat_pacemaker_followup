@@ -15,7 +15,14 @@ Component({
     },
 
     methods: {
+        onShow(){
+                  
+           
+        },
         onLoad(options) {
+            var userid = app.globalData.userid;
+                  console.log("当前的userid为:"+userid)
+            
             var state;
             var that = this;
             state = wx.getStorageSync('disableNavi')
@@ -34,6 +41,9 @@ Component({
                     title: '请先登录',
                     icon: 'error'
                 })
+            }
+             if(userid>=1){
+                this.getmrld(userid)
             }
         },
         showModal() {
@@ -151,8 +161,8 @@ Component({
             wx.request({
                 url: app.globalData.url + '/user/medicalRecord',
                 data: {
-                    userId: userid
-
+                    // userId: userid
+                     userId: 53
                 },
                 method: 'POST',
                 header: {
