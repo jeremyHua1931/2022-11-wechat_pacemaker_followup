@@ -22,7 +22,7 @@ Page({
             "type": 0,
             "minFrequency": 1.0,
             "doctor": 53,
-            "doctorName": "吕敏",
+            "doctorName": "",
             "mrId": 54,
             "performance": "1",
             "batteryState": 0,
@@ -68,8 +68,7 @@ Page({
        var state;
        state = wx.getStorageSync('disableNavi')
        console.log("检查是否需要跳回:"+state)
-       if(state=="noRecord"||state=="unlogin"){
-            wx.request({
+             wx.request({
                 url: app.globalData.url + '/followRecord/followlist',
                 data: {
                     mrId: 54
@@ -89,9 +88,11 @@ Page({
  
                 },
                 fail: function (error) {
-
+                    console.log("主页请求数据失败")
                 }
             })
+       if(state=="noRecord"||state=="unlogin"){
+      
   
         wx.switchTab({         
           url: '/pages/user/user'
