@@ -8,9 +8,9 @@ Component({
         hasUserInfo: false,
         userInfo: [],
         userID: "",
-        starCount: 3,
-        forksCount: 23,
-        visitTotal: 4000,
+        starCount: 0,
+        forksCount: 0,
+        visitTotal: 0,
         doctorInfo: "负责医师: 王明 \r\n 所在医院: 武汉大学中南医院"
     },
 
