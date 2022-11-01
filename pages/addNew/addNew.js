@@ -252,8 +252,10 @@ Page({
             success: res => {
                 if (res.confirm) {
                     this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+                    this.data.imgListUpload.splice(e.currentTarget.dataset.index, 1);
                     this.setData({
-                        imgList: this.data.imgList
+                        imgList: this.data.imgList,
+                        imgListUpload:this.data.imgListUpload
                     })
                 }
             }
