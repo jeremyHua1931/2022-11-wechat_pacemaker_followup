@@ -4,22 +4,38 @@
 </cu-custom> -->
 
 <!-- 审核待批注或者需修改 , 改为 !ifPassed-->
-<view wx:if="{{ifPassed}}">
-	
 
-
-
-
-
-
+<view class="bg-white padding">
+  <view class="cu-steps">
+    <view class="cu-item {{index>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key>
+      <text class="num ''" data-index="{{index + 1}}"></text> {{item.name}}
+    </view>
+  </view>
 </view>
 
 
 
 
 
+<!-- <view class="cu-bar bg-white" wx:if="{{item1.follow_record.state=='1'}}">
+			<view class="action">
+				<text class="text-blue">当前状态：已完成</text>
+			</view>
+</view>
+<view class="cu-bar bg-white" wx:if="{{item1.follow_record.state=='2'}}">
+			<view class="action">
+				<text class="text-yellow">当前状态：待审核</text>
+			</view>
+</view>
+<view class="cu-bar bg-white" wx:if="{{item1.follow_record.state=='3'}}">
+			<view class="action">
+				<text class="text-red">当前状态：待修改</text>
+			</view>
+</view> -->
+
+
 <!-- 审核已完成 -->
-<view wx:if="{{ifPassed}}">
+<view >
 	<form>
 		<view class="cu-bar bg-white">
 			<view class="action">
@@ -27,6 +43,7 @@
 				<text>基本随访信息</text>
 			</view>
 		</view>
+        <view wx:if="{{item1.follow_record.state=='1'}}">
 		<view class="cu-form-group">
 			<view class="title">所属随访次数</view>
 			<input disabled="true" placeholder="{{item1.follow_record.frCount}}"></input>
@@ -64,6 +81,7 @@
 			<view class="title">临床表现</view>
 			<textarea maxlength="-1" disabled="true" bindinput="textareaBInput" placeholder="{{item1.follow_record.performance}}"></textarea>
 		</view>
+        </view>
     <view class="cu-bar bg-white">
 	<view class="action">
 		随访表图片上传
@@ -87,6 +105,8 @@
 
 </view>
 
+
+<view wx:if="{{item1.follow_record.state=='1'}}">
 		<view class="cu-form-group  margin-top">
 			<view class="title">电池状态</view>
 			<checkbox class="round" checked="{{item1.follow_record.batteryState}}" disabled=""></checkbox>
@@ -128,6 +148,10 @@
 
 
 		
+</view>
+
+
+
 
 		<view class="cu-bar bg-white margin-top">
 			<view class="action">
@@ -135,7 +159,7 @@
 				<text>附加随访信息</text>
 			</view>
 		</view>
-		<view class="cu-form-group ">
+		<view class="cu-form-group " wx:if="{{item1.follow_record.state=='1'}}">
 			<view class="title">心脏超声</view>
 			<radio checked="{{item1.heartUltrasound}}" disabled="true"></radio>
 		</view>
@@ -171,7 +195,7 @@
 		
 
 
-<view wx:if="{{item1.lvWireFollowRecord!='0'}}">		
+<view wx:if="{{item1.lvWireFollowRecord!='0'&&item1.follow_record.state=='1'}}">
         <view class="cu-bar bg-white margin-top">
 			<view class="action">
 				<text class="cuIcon-title text-yellow"></text>
@@ -231,7 +255,7 @@
 
 
 
-<view wx:if="{{item1.rvWireFollowRecord!='0'}}">	
+<view wx:if="{{item1.rvWireFollowRecord!='0'&&item1.follow_record.state=='1'}}">	
 		<view class="cu-bar bg-white margin-top">
 			<view class="action">
 				<text class="cuIcon-title text-blue"></text>
@@ -290,7 +314,7 @@
 </view>
 
 
-<view wx:if="{{item1.raWireFollowRecord!='0'}}">	
+<view wx:if="{{item1.raWireFollowRecord!='0'&&item1.follow_record.state=='1'}}">	
 	<view class="cu-bar bg-white margin-top">
 			<view class="action">
 				<text class="cuIcon-title text-red"></text>

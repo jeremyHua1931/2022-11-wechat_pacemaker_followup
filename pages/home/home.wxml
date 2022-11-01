@@ -5,13 +5,22 @@
         <view class="cu-item">
             <view class="content" data-id="{{item.id}}" bindtap="jumpToDetail">
                 <view class="cu-capsule radius">
-                    <view class="cu-tag bg-cyan">核验状态: {{item.batteryState}}</view>
-                    <view class="cu-tag line-cyan">电池状况: {{item.batteryState}}</view>
+                    <view class="cu-tag bg-cyan" wx:if="{{item.state=='1'}}">核验状态: 已完成</view>
+                    <view class="cu-tag bg-yellow" wx:if="{{item.state=='2'}}">核验状态: 待审核</view>
+                    <view class="cu-tag bg-red" wx:if="{{item.state=='3'}}">核验状态: 待修改</view>
+                    <view class="cu-tag line-cyan" wx:if="{{item.state=='1'&&item.batteryState=='0'}}">电池状况: 正常</view>
+                    <view class="cu-tag line-red" wx:if="{{item.state=='1'&&item.batteryState=='1'}}">电池状况: ERI</view>
                     <!-- 核验时间修改为不显示日期仅显示时间 -->
                 </view>
-                <view class="margin-top" >所属随访次数：{{item.frCount}}</view>
-                <view class="margin-top">主治医师：{{item.doctorName}}</view>
-                <view class="margin-top">随访种类：{{item.type}}</view>
+                <view class="margin-top" wx:if="{{item.state=='1'}}" >所属随访次数：{{item.frCount}}</view>
+                <view class="margin-top" wx:if="{{item.state=='1'}}">主治医师：{{item.doctorName}}</view>
+
+
+                <view class="margin-top" wx:if="{{item.state=='1'&&item.state=='0'}}">随访种类：常规随访</view>
+                <view class="margin-top line-red" wx:if="{{item.state=='1'&&item.state=='1'}}">随访种类：不适随访</view>
+        
+                <view class="margin-top" wx:if="{{item.state=='3'&&item.stateNote!=null}}">修改建议：{{item.stateNote}}</view>
+                <view class="margin-top" wx:if="{{item.state=='3'&&item.stateNote==null}}">修改建议：暂无，请咨询医生</view>
                 <!-- <view class="margin-top">点击查看详情</view> -->
             </view>
         </view>

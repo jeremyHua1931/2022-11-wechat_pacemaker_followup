@@ -3,6 +3,17 @@ var uploadImage = require('../../../utils/uploadFile.js');
 var util = require('../../../utils/util.js');
 Page({
     data: {
+      
+    basics: 0,
+    numList: [{
+      name: '审核中'
+    }, {
+      name: '待修改'
+    }, {
+      name: '已完成'
+    }],
+    num: 0,
+    scroll: 0,
         id: 0,
         ifPassed: true,
         item1: {
@@ -41,6 +52,13 @@ Page({
         textareaAValue: '',
         textareaBValue: ''
     },
+
+
+      numSteps() {
+    this.setData({
+      num: this.data.num == this.data.numList.length - 1 ? 0 : this.data.num + 1
+    })
+  },
       changeDisplayImageUpload2(e){
     var state = e.detail.value
     var that = this
@@ -153,6 +171,13 @@ Page({
                             "note": res.data.follow_record.note == null ? "无" : res.data.follow_record.note,
                             "suggest": res.data.follow_record.suggest == null ? "无" : res.data.follow_record.suggest,
                         }
+                    }
+
+                    if(data.follow_record.state=='3'){
+                      that.numSteps()
+                    }else if(data.follow_record.state=='1'){
+                      that.numSteps()
+                      that.numSteps()
                     }
                     that.setData({
                         item1: data
