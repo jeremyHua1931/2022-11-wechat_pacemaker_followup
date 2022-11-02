@@ -255,7 +255,7 @@ Page({
                     this.data.imgListUpload.splice(e.currentTarget.dataset.index, 1);
                     this.setData({
                         imgList: this.data.imgList,
-                        imgListUpload:this.data.imgListUpload
+                        imgListUpload: this.data.imgListUpload
                     })
                 }
             }
@@ -284,9 +284,97 @@ Page({
                 confirmText: '继续编辑',
                 success: res => {}
             })
+            console.log("==>继续返回编辑")
             return;
         }
+        // var tmp1 = ["1"]
+        // tmp1[0] = that.data.img1Upload
+        // var imgLink = tmp1
+
+        console.log("目前随访次数为: " + app.globalData.mrinfo.followCounts)
+        var newfrCount = app.globalData.mrinfo.followCounts + 1
+        app.globalData.mrinfo.followCounts=newfrCount
+        var newRecord={
+            followRecord: {
+                frCount: newfrCount ,
+                date: "2022-11-02",
+                doctor: 53,
+                image: that.data.img1Upload,
+                id: 0,
+                mrId: app.globalData.mrinfo.id
+            },
+        }
+        if (that.data.img2Upload.length != 0) {
+            newRecord = {
+                followRecord: {
+                    frCount: newfrCount ,
+                    date: "2022-11-02",
+                    doctor: 53,
+                    image: that.data.img1Upload,
+                    id: 0,
+                    mrId: app.globalData.mrinfo.id
+                },
+                heartUltrasound: {
+                    image: that.data.img2Upload
+                },
+                raWireRecord: {
+                    id: 0
+                },
+                rvWireRecord: {
+                    id: 0
+                },
+                lvWireRecord: {
+                    id: 0
+                }
+            }
+        }
+        if (that.data.imgListUpload.length != 0) {
+            imgLink = imgLink.concat(that.data.imgListUpload)
+        }
+        // console.log("添加新纪录上传的图片链接组为: ")
+        // console.log(imgLink)
+
+        console.log("新纪录如下： ")
+        console.log(newRecord)
+        that.addNewRecord(newRecord)
+
+
     },
+
+    addNewRecord: function (newRecord) {
+        var that = this
+        wx.request({
+            url: app.globalData.url + "/medicalRecords/followRecordWeChat",
+            data: newRecord,
+            method: 'POST',
+            header: {
+                'content-type': 'application/json'
+            },
+            success: function (res) {
+                console.log(res)
+                console.log("==>新纪录已经添加成功")
+                // console.log("跳转home查看新加入的记录")
+                // wx.switchTab({
+                //   url: '/pages/home/home',
+                // })
+                that.setData({
+                    img1:'',
+                    img2:'',
+                    imgList:[],
+                    img1Upload:'',
+                    img2Upload:'',
+                    imgListUpload:[],
+                })
+            },
+            fail: function (error) {}
+        })
+        
+    },
+
+    // getPhoneNumber (e) {
+    //     console.log("获取用户手机号码")
+    //     console.log(e)
+    // },
 
     /**
      * 生命周期函数--监听页面加载

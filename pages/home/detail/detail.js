@@ -3,16 +3,16 @@ var uploadImage = require('../../../utils/uploadFile.js');
 var util = require('../../../utils/util.js');
 Page({
     data: {
-    basics: 0,
-    numList: [{
-      name: '审核中'
-    }, {
-      name: '待修改'
-    }, {
-      name: '已完成'
-    }],
-    num: 0,
-    scroll: 0,
+        basics: 0,
+        numList: [{
+            name: '审核中'
+        }, {
+            name: '待修改'
+        }, {
+            name: '已完成'
+        }],
+        num: 0,
+        scroll: 0,
         id: 0,
         ifPassed: true,
         item1: {
@@ -41,8 +41,8 @@ Page({
             content20: "1",
             content21: "1212",
             content22: "这里是备注",
-            displayImageUpload2:false,
-    displayImageUpload3:false,
+            displayImageUpload2: false,
+            displayImageUpload3: false,
         },
         img1: [],
         img2: [],
@@ -57,37 +57,37 @@ Page({
     },
 
 
-      numSteps() {
-    this.setData({
-      num: this.data.num == this.data.numList.length - 1 ? 0 : this.data.num + 1
-    })
-  },
-      changeDisplayImageUpload2(e){
-    var state = e.detail.value
-    var that = this
-    this.setData({
-      displayImageUpload2:state
-    })
-    if(state==false){
-      this.setData({
-        img2:'',
-        img2Upload:'',
-      })
-    }
-  },
-    changeDisplayImageUpload3(e){
-      var that =this
-      var state = e.detail.value
-    this.setData({
-      displayImageUpload3:state
-    })
-        if(state==false){
-      this.setData({
-        imgList:'',
-        imgListUpload:'',
-      })
-    }
-  },
+    numSteps() {
+        this.setData({
+            num: this.data.num == this.data.numList.length - 1 ? 0 : this.data.num + 1
+        })
+    },
+    changeDisplayImageUpload2(e) {
+        var state = e.detail.value
+        var that = this
+        this.setData({
+            displayImageUpload2: state
+        })
+        if (state == false) {
+            this.setData({
+                img2: '',
+                img2Upload: '',
+            })
+        }
+    },
+    changeDisplayImageUpload3(e) {
+        var that = this
+        var state = e.detail.value
+        this.setData({
+            displayImageUpload3: state
+        })
+        if (state == false) {
+            this.setData({
+                imgList: '',
+                imgListUpload: '',
+            })
+        }
+    },
     onLoad(options) {
         var that = this
         console.log('准备请求随访数据的id为' + options)
@@ -111,7 +111,7 @@ Page({
                     console.log("请求详细数据结束")
                     // <!-- todo:date的切分 -->
                     var data = {
-                        "rvWireFollowRecord": res.data.rvWireFollowRecord==0?'0':{
+                        "rvWireFollowRecord": res.data.rvWireFollowRecord == 0 ? '0' : {
                             "id": res.data.rvWireFollowRecord.id,
                             "frId": res.data.rvWireFollowRecord.frId,
                             "position": res.data.rvWireFollowRecord.position,
@@ -126,7 +126,7 @@ Page({
                             "perceptualSensitivity": res.data.rvWireFollowRecord.perceptualSensitivity,
                             "note": res.data.rvWireFollowRecord.note == null ? "暂无" : res.data.rvWireFollowRecord.note,
                         },
-                        "raWireFollowRecord":  res.data.raWireFollowRecord==0?'0':{
+                        "raWireFollowRecord": res.data.raWireFollowRecord == 0 ? '0' : {
                             "id": res.data.raWireFollowRecord.id,
                             "frId": res.data.raWireFollowRecord.frId,
                             "position": res.data.raWireFollowRecord.position,
@@ -141,7 +141,7 @@ Page({
                             "perceptualSensitivity": res.data.raWireFollowRecord.perceptualSensitivity,
                             "note": res.data.raWireFollowRecord.note == null ? "暂无" : res.data.raWireFollowRecord.note,
                         },
-                        "lvWireFollowRecord":  res.data.lvWireFollowRecord==0?'0':{
+                        "lvWireFollowRecord": res.data.lvWireFollowRecord == 0 ? '0' : {
                             "id": res.data.lvWireFollowRecord.id,
                             "frId": res.data.lvWireFollowRecord.frId,
                             "position": res.data.lvWireFollowRecord.position,
@@ -177,12 +177,11 @@ Page({
                             "suggest": res.data.follow_record.suggest == null ? "无" : res.data.follow_record.suggest,
                         }
                     }
-
-                    if(data.follow_record.state=='3'){
-                      that.numSteps()
-                    }else if(data.follow_record.state=='1'){
-                      that.numSteps()
-                      that.numSteps()
+                    if (data.follow_record.state == '3') {
+                        that.numSteps()
+                    } else if (data.follow_record.state == '1') {
+                        that.numSteps()
+                        that.numSteps()
                     }
                     that.setData({
                         item1: data
@@ -228,7 +227,7 @@ Page({
 
 
 
-//图片操作1
+    //图片操作1
     ChooseImage1() {
         var that = this
         wx.chooseImage({
@@ -432,7 +431,7 @@ Page({
                     this.data.imgListUpload.splice(e.currentTarget.dataset.index, 1);
                     this.setData({
                         imgList: this.data.imgList,
-                        imgListUpload:this.data.imgListUpload
+                        imgListUpload: this.data.imgListUpload
                     })
                 }
             }

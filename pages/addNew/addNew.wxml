@@ -39,7 +39,7 @@
 
 
 
-<view class="cu-form-group margin-top">
+<!-- <view class="cu-form-group margin-top">
 		<view class="title">上传额外图片  ({{imgList.length}}/4)</view>
 		<switch bindchange="changeDisplayImageUpload3"></switch>
 	</view>
@@ -61,8 +61,12 @@
 </view>
 
 
-</view>
+</view> -->
 
 <view class="cu-form-group cu-bar bg-white margin-top">
 	<button class="cu-btn bg-blue shadow" bindtap="imgMsgTo">提交</button>
 </view>
+
+<!-- <view class="cu-form-group cu-bar bg-white margin-top">
+    <button class="cu-btn bg-blue shadow" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">手机号绑定</button>
+</view> -->
