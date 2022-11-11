@@ -87,7 +87,7 @@
   <view class="cu-tabbar-height"></view>
 </scroll-view>
 
-<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+<!-- <view class="cu-modal {{modalName=='Modal'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
       <view class="content">错误</view>
@@ -99,4 +99,4 @@
       用户尚未绑定记录，请联系医生。
     </view>
   </view>
-</view>
+</view> -->
