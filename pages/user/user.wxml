@@ -56,14 +56,12 @@
     </view>
 
 
-
-
-    <view class="cu-item arrow">
+    <!-- <view class="cu-item arrow">
       <view class="content"   bindtap="ShowUserDoctorInfo" data-link="">
         <image src="/images/user_doctor.png" class="png" mode="aspectFit"></image>
         <text class="text-grey">负责医师</text>
       </view>
-    </view>
+    </view> -->
 
     <view class="cu-item arrow">
       <view class="content" bindtap="ShowSystemInfo" hover-class="none">

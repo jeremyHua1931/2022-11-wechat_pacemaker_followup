@@ -271,8 +271,9 @@ Page({
                         function (result) {
                             console.log(" img1上传失=>", result);
                             wx.hideLoading()
-                            wx.showToast({
+                            wx.showModal({
                                 title: '上传失败',
+                                content: '请重试（注意：图片不能大于5M或者请勿勾选原图）',
                                 icon: 'error'
                             })
                         }
@@ -333,8 +334,9 @@ Page({
                         function (result) {
                             console.log(" img2上传失=>", result);
                             wx.hideLoading()
-                            wx.showToast({
+                            wx.showModal({
                                 title: '上传失败',
+                                content: '请重试（注意：图片不能大于5M或者请勿勾选原图）',
                                 icon: 'error'
                             })
                         }
