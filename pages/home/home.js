@@ -68,6 +68,21 @@ Page({
                 that.setData({
                     dataList: data
                 })
+                var starCount=0
+                var forksCount=0
+                var visitTotal=0
+                data.forEach(element => {
+                  visitTotal++
+                  if(element.state=='2'){
+                      forksCount++
+                  }
+                  if(element.state=='3'){
+                      starCount++
+                  }
+                });
+                app.globalData.starCount=starCount
+                app.globalData.forksCount=forksCount
+                app.globalData.visitTotal=visitTotal
 
             },
             fail: function (error) {

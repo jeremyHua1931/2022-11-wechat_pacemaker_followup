@@ -8,9 +8,9 @@ Component({
         hasUserInfo: false,
         userInfo: [],
         userID: "",
-        starCount: 0,
-        forksCount: 0,
-        visitTotal: 0,
+        starCount: '暂无',
+        forksCount: '暂无',
+        visitTotal: '暂无',
         doctorInfo: "负责医师: 王明 \r\n 所在医院: 武汉大学中南医院"
     },
 
@@ -24,6 +24,11 @@ Component({
             console.log("user.js/onload()  userid: "+ app.globalData.userid)
             var that = this;
             var state;
+            that.setData({
+              starCount: app.globalData.starCount,
+              forksCount: app.globalData.forksCount,
+              visitTotal: app.globalData.visitTotal,
+            })
             state = wx.getStorageSync('disableNavi')
             if (state == "noRecord") {
                 this.showModal()
@@ -204,26 +209,28 @@ Component({
             wx.showModal({
                 title: '医师信息',
                 content: this.data.doctorInfo,
-                success(res) {
-                    if (res.confirm) {
-                        console.log('用户点击确定')
-                    } else if (res.cancel) {
-                        console.log('用户点击取消')
-                    }
-                }
+                showCancel: false
+                // success(res) {
+                //     if (res.confirm) {
+                //         console.log('用户点击确定')
+                //     } else if (res.cancel) {
+                //         console.log('用户点击取消')
+                //     }
+                // }
             })
         },
         ShowSystemInfo() {
             wx.showModal({
                 title: '系统信息',
                 content: 'Version 1.0',
-                success(res) {
-                    if (res.confirm) {
-                        console.log('用户点击确定')
-                    } else if (res.cancel) {
-                        console.log('用户点击取消')
-                    }
-                }
+                showCancel: false
+                // success(res) {
+                //     if (res.confirm) {
+                //         console.log('用户点击确定')
+                //     } else if (res.cancel) {
+                //         console.log('用户点击取消')
+                //     }
+                // }
             })
         },
 

@@ -16,18 +16,18 @@
     <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xxl text-orange">{{visitTotal}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-attentionfill"></text> 记录总次数</view>
+        <text></text> 记录总次数</view>
     </view>
     <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xxl text-blue">{{starCount}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-favorfill"></text> 未核验</view>
+        <text ></text> 待修改 </view>
     </view>
     <view class="flex flex-sub flex-direction">
       <view class="text-xxl text-green">{{forksCount}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-fork">
-        </text> 异常次数</view>
+        <text>
+        </text> 待审核</view>
     </view>
   </view>
 

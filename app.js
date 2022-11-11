@@ -13,6 +13,9 @@ App({
         hasUserInfo: false,
         followList: [],
         followDetailOne: [],
+        starCount: '暂无',
+        forksCount: '暂无',
+        visitTotal: '暂无',
     },
 
     // 启动app
