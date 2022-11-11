@@ -523,28 +523,47 @@ Page({
         }
         var dataUp = that.data.detailUp
         dataUp.heartUltrasound.image = that.data.img2Upload
+
+        var date_in = new Date(dataUp.follow_record.date).format("yyyy-MM-dd hh:mm:ss")
+        dataUp.follow_record.date = date_in
+        dataUp.follow_record.state = 2
+
         wx.request({
-            url: app.globalData.url + "/heartUltrasound/update",
-            data: dataUp.heartUltrasound,
+            url: app.globalData.url + "/followRecord/update",
+            data: dataUp.follow_record,
             method: 'POST',
             header: {
                 'content-type': 'application/json'
             },
             success: function (res) {
                 console.log(res)
-                wx.switchTab({
-                    url: '/pages/home/home',
-                })
-                that.setData({
-                    img1: '',
-                    img2: '',
-                    imgList: [],
-                    img1Upload: '',
-                    img2Upload: '',
+                wx.request({
+                    url: app.globalData.url + "/heartUltrasound/update",
+                    data: dataUp.heartUltrasound,
+                    method: 'POST',
+                    header: {
+                        'content-type': 'application/json'
+                    },
+                    success: function (res) {
+                        console.log(res)
+                        wx.switchTab({
+                            url: '/pages/home/home',
+                        })
+                        that.setData({
+                            img1: '',
+                            img2: '',
+                            imgList: [],
+                            img1Upload: '',
+                            img2Upload: '',
+                        })
+                    },
+                    fail: function (error) {}
                 })
             },
             fail: function (error) {}
         })
+
+       
     },
 
 
