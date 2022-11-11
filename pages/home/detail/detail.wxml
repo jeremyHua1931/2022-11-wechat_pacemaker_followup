@@ -65,7 +65,7 @@
 	<view class="grid col-4 grid-square flex-sub">
 		<view class="bg-img" wx:for="{{img1}}" wx:key="{{index}}" bindtap="ViewImage1" data-url="{{img1[index]}}">
 			<image src='{{img1[index]}}' mode='aspectFill'></image>
-			<view class="cu-tag bg-red" catchtap="DelImg1" data-index="{{index}}">
+			<view wx:if="{{item1.follow_record.state=='3'}}" class="cu-tag bg-red" catchtap="DelImg1" data-index="{{index}}">
 				<text class="cuIcon-close"></text>
 			</view>
 		</view>
@@ -74,7 +74,7 @@
 		</view>
 	</view>
 </view>
-<view class="cu-form-group cu-bar bg-white ">
+<view wx:if="{{item1.follow_record.state=='3'}}" class="cu-form-group cu-bar bg-white ">
 	<button class="cu-btn bg-blue shadow" bindtap="imgMsgTo1">重新上传</button>
 </view>
 
@@ -148,7 +148,7 @@
 	<view class="grid col-4 grid-square flex-sub">
 		<view class="bg-img" wx:for="{{img2}}" wx:key="{{index}}" bindtap="ViewImage2" data-url="{{img2[index]}}">
 			<image src='{{img2[index]}}' mode='aspectFill'></image>
-			<view class="cu-tag bg-red" catchtap="DelImg2" data-index="{{index}}">
+			<view wx:if="{{item1.follow_record.state=='3'}}" class="cu-tag bg-red" catchtap="DelImg2" data-index="{{index}}">
 				<text class="cuIcon-close"></text>
 			</view>
 		</view>
@@ -157,7 +157,7 @@
 		</view>
 	</view>
 </view>
-<view class="cu-form-group cu-bar bg-white ">
+<view wx:if="{{item1.follow_record.state=='3'}}" class="cu-form-group cu-bar bg-white ">
 	<button class="cu-btn bg-blue shadow" bindtap="imgMsgTo2">重新上传</button>
 </view>
 </view>
