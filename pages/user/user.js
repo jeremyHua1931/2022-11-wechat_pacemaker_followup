@@ -167,7 +167,7 @@ Component({
                 },
                 success: function (res) {
                     // console.log(res)
-                    if (res.data.code == 8) {
+                    if (res.data.code == 9) {
                         wx.setStorageSync('disableNavi', "noRecord");
                         that.setData({
                             userState: "未绑定档案"
