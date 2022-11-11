@@ -74,6 +74,9 @@
 		</view>
 	</view>
 </view>
+<view class="cu-form-group cu-bar bg-white ">
+	<button class="cu-btn bg-blue shadow" bindtap="imgMsgTo1">重新上传</button>
+</view>
 
 
 <view wx:if="{{item1.follow_record.state=='1'}}">
@@ -122,7 +125,7 @@
 
 
 
-
+<view wx:if="{{item1.heartUltrasound}}">
 		<view class="cu-bar bg-white margin-top">
 			<view class="action">
 				<text class="cuIcon-title text-blue"></text>
@@ -136,7 +139,7 @@
 
     <view class="cu-form-group">
 		<view class="title">上传心脏超声图片 ({{img2.length}}/1）</view>
-		<switch bindchange="changeDisplayImageUpload2"></switch>
+		<switch checked="{{displayImageUpload2}}" bindchange="changeDisplayImageUpload2"></switch>
 	</view>
 
 
@@ -154,9 +157,13 @@
 		</view>
 	</view>
 </view>
+<view class="cu-form-group cu-bar bg-white ">
+	<button class="cu-btn bg-blue shadow" bindtap="imgMsgTo2">重新上传</button>
+</view>
 </view>
 		
 
+</view>
 
 <view wx:if="{{item1.lvWireFollowRecord!='0'&&item1.follow_record.state=='1'}}">
         <view class="cu-bar bg-white margin-top">
@@ -334,13 +341,13 @@
 		</view>
 </view>
 
-    <view class="cu-form-group margin-top">
+    <!-- <view class="cu-form-group margin-top">
 		<view class="title">上传额外图片</view>
 		<switch bindchange="changeDisplayImageUpload3"></switch>
-	</view>
+	</view> -->
 
 
-<view wx:if="{{displayImageUpload3}}">
+<!-- <view wx:if="{{displayImageUpload3}}">
 <view class="cu-bar bg-white">
 	<view class="action">
 		上传额外图片  ({{imgList.length}}/4)
@@ -363,11 +370,11 @@
 	</view>
 </view>
 
-</view>
+</view> -->
 
-<view class="cu-form-group cu-bar bg-white margin-top">
+<!-- <view class="cu-form-group cu-bar bg-white margin-top">
 	<button class="cu-btn bg-blue shadow" bindtap="imgMsgTo">提交</button>
-</view>
+</view> -->
 
 
 		<!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->

@@ -93,6 +93,7 @@ Component({
                         url: `https://api.weixin.qq.com/sns/jscode2session?appid=${APPID}&secret=${SECRET}&js_code=${res.code}&grant_type=authorization_code`,
                         success: (res) => {
                             console.log("   3-获取用户唯一辨识openid获取成功")
+                            console.log(res)
                             console.log("       openid: " + res.data.openid)
                             //获取到你的openid
                             that.setData({
@@ -158,7 +159,7 @@ Component({
                 url: app.globalData.url + '/user/medicalRecord',
                 data: {
                     // userId: userid
-                    userId: 53
+                    userId: userid
                 },
                 method: 'POST',
                 header: {

@@ -15,6 +15,7 @@ Page({
         scroll: 0,
         id: 0,
         ifPassed: true,
+        detailUp: [],
         item1: {
             time: '12:01',
             date: '2018-12-25',
@@ -69,10 +70,10 @@ Page({
             displayImageUpload2: state
         })
         if (state == false) {
-            this.setData({
-                img2: '',
-                img2Upload: '',
-            })
+            // this.setData({
+            //     img2: '',
+            //     img2Upload: '',
+            // })
         }
     },
     changeDisplayImageUpload3(e) {
@@ -82,10 +83,10 @@ Page({
             displayImageUpload3: state
         })
         if (state == false) {
-            this.setData({
-                imgList: '',
-                imgListUpload: '',
-            })
+            // this.setData({
+            //     imgList: '',
+            //     imgListUpload: '',
+            // })
         }
     },
     onLoad(options) {
@@ -177,6 +178,16 @@ Page({
                             "suggest": res.data.follow_record.suggest == null ? "无" : res.data.follow_record.suggest,
                         }
                     }
+                    var tmp1 = ['1']
+                    tmp1[0] = res.data.follow_record.image
+                    var tmp2 = ['1']
+                    tmp2[0] = res.data.heartUltrasound.image
+
+                    var tmp2Length = false
+                    if (tmp2[0] != '1') {
+                        tmp2Length = true
+                    }
+
                     if (data.follow_record.state == '3') {
                         that.numSteps()
                     } else if (data.follow_record.state == '1') {
@@ -184,7 +195,11 @@ Page({
                         that.numSteps()
                     }
                     that.setData({
-                        item1: data
+                        item1: data,
+                        img1: tmp1,
+                        img2: tmp2,
+                        displayImageUpload2: tmp2Length,
+                        detailUp: res.data
                     })
 
                 },
@@ -355,113 +370,181 @@ Page({
 
     //图片操作3
 
-    ChooseImage() {
-        var that = this
-        wx.chooseImage({
-            count: 4, //默认9
-            sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-            sourceType: ['album'], //从相册选择
-            success: (res) => {
-                if (this.data.imgList.length != 0) {
-                    that.UpLoad3(res.tempFilePaths[0], this.data.imgList.length);
-                    this.setData({
-                        imgList: this.data.imgList.concat(res.tempFilePaths)
-                    })
-                } else {
-                    that.UpLoad3(res.tempFilePaths[0], this.data.imgList.length);
-                    this.setData({
-                        imgList: res.tempFilePaths
-                    })
-                }
-            }
-        });
-    },
+    // ChooseImage() {
+    //     var that = this
+    //     wx.chooseImage({
+    //         count: 4, //默认9
+    //         sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+    //         sourceType: ['album'], //从相册选择
+    //         success: (res) => {
+    //             if (this.data.imgList.length != 0) {
+    //                 that.UpLoad3(res.tempFilePaths[0], this.data.imgList.length);
+    //                 this.setData({
+    //                     imgList: this.data.imgList.concat(res.tempFilePaths)
+    //                 })
+    //             } else {
+    //                 that.UpLoad3(res.tempFilePaths[0], this.data.imgList.length);
+    //                 this.setData({
+    //                     imgList: res.tempFilePaths
+    //                 })
+    //             }
+    //         }
+    //     });
+    // },
 
-    UpLoad3: function (path, index) {
-        var that = this;
-        var dir = app.globalData.userid + "/";
-        uploadImage(path, dir,
-            function (result) {
-                console.log("imgList中第 " + (index + 1) + " 图片上传成功图片地址为：", result);
-                if (that.data.imgListUpload.length != 0) {
-                    var data = ["1"]
-                    data[0] = result
-                    that.setData({
-                        imgListUpload: that.data.imgListUpload.concat(data)
-                    })
-                } else {
-                    var data = ["1"]
-                    data[0] = result
-                    that.setData({
-                        imgListUpload: data
-                    })
-                }
-                wx.hideLoading();
-                wx.showToast({
-                    title: '上传成功',
-                    icon: 'success'
-                })
-            },
-            function (result) {
-                wx.hideLoading()
-                wx.showToast({
-                    title: '上传失败',
-                    icon: 'error'
-                })
-            }
-        )
-    },
-
-
-    ViewImage(e) {
-        wx.previewImage({
-            urls: this.data.imgList,
-            current: e.currentTarget.dataset.url
-        });
-    },
-    DelImg(e) {
-        wx.showModal({
-            title: '请确认',
-            content: '确定要删除这张图片吗？',
-            cancelText: '不了',
-            confirmText: '删除',
-            success: res => {
-                if (res.confirm) {
-                    this.data.imgList.splice(e.currentTarget.dataset.index, 1);
-                    this.data.imgListUpload.splice(e.currentTarget.dataset.index, 1);
-                    this.setData({
-                        imgList: this.data.imgList,
-                        imgListUpload: this.data.imgListUpload
-                    })
-                }
-            }
-        })
-    },
+    // UpLoad3: function (path, index) {
+    //     var that = this;
+    //     var dir = app.globalData.userid + "/";
+    //     uploadImage(path, dir,
+    //         function (result) {
+    //             console.log("imgList中第 " + (index + 1) + " 图片上传成功图片地址为：", result);
+    //             if (that.data.imgListUpload.length != 0) {
+    //                 var data = ["1"]
+    //                 data[0] = result
+    //                 that.setData({
+    //                     imgListUpload: that.data.imgListUpload.concat(data)
+    //                 })
+    //             } else {
+    //                 var data = ["1"]
+    //                 data[0] = result
+    //                 that.setData({
+    //                     imgListUpload: data
+    //                 })
+    //             }
+    //             wx.hideLoading();
+    //             wx.showToast({
+    //                 title: '上传成功',
+    //                 icon: 'success'
+    //             })
+    //         },
+    //         function (result) {
+    //             wx.hideLoading()
+    //             wx.showToast({
+    //                 title: '上传失败',
+    //                 icon: 'error'
+    //             })
+    //         }
+    //     )
+    // },
 
 
+    // ViewImage(e) {
+    //     wx.previewImage({
+    //         urls: this.data.imgList,
+    //         current: e.currentTarget.dataset.url
+    //     });
+    // },
+    // DelImg(e) {
+    //     wx.showModal({
+    //         title: '请确认',
+    //         content: '确定要删除这张图片吗？',
+    //         cancelText: '不了',
+    //         confirmText: '删除',
+    //         success: res => {
+    //             if (res.confirm) {
+    //                 this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+    //                 this.data.imgListUpload.splice(e.currentTarget.dataset.index, 1);
+    //                 this.setData({
+    //                     imgList: this.data.imgList,
+    //                     imgListUpload: this.data.imgListUpload
+    //                 })
+    //             }
+    //         }
+    //     })
+    // },
 
-    imgMsgTo: function () {
+
+
+    imgMsgTo1: function () {
         var that = this;
         console.log("==>记录开始添加到数据库中")
-        console.log("   1-img1Upload: ")
-        console.log(that.data.img1Upload)
-        console.log("   2-img2Upload: ")
-        console.log(that.data.img2Upload)
-        console.log("   3-imgList: ")
-        console.log(that.data.imgList)
-        console.log("   4-imgListUpload: ")
-        console.log(that.data.imgListUpload)
+        console.log("   ==> img1Upload: ")
+        // console.log(that.data.img1)
+        // console.log(that.data.img1Upload)
 
         if (that.data.img1Upload.length == 0) {
             wx.showModal({
                 title: '请确认',
-                content: '必须添加随访表基本图片',
+                content: '未修改，无需重新上传',
                 cancelText: '返回',
-                confirmText: '继续编辑',
+                confirmText: '确定',
                 success: res => {}
             })
             return;
         }
+        var dataUp = that.data.detailUp
+        dataUp.follow_record.image = that.data.img1Upload
+
+        var date_in = new Date(dataUp.follow_record.date).format("yyyy-MM-dd hh:mm:ss")
+        dataUp.follow_record.date = date_in
+        dataUp.follow_record.state = 2
+        wx.request({
+            url: app.globalData.url + "/followRecord/update",
+            data: dataUp.follow_record,
+            method: 'POST',
+            header: {
+                'content-type': 'application/json'
+            },
+            success: function (res) {
+                console.log(res)
+                wx.switchTab({
+                    url: '/pages/home/home',
+                })
+                that.setData({
+                    img1: '',
+                    img2: '',
+                    imgList: [],
+                    img1Upload: '',
+                    img2Upload: '',
+                })
+            },
+            fail: function (error) {}
+        })
+
+    },
+
+    imgMsgTo2: function () {
+        var that = this;
+        console.log("==>记录开始添加到数据库中")
+
+        console.log("   ==> img2Upload: ")
+        // console.log(that.data.img2)
+        // console.log(that.data.img2Upload)
+
+        if (that.data.img2Upload.length == 0) {
+            wx.showModal({
+                title: '请确认',
+                content: '未修改，无需重新上传',
+                cancelText: '返回',
+                confirmText: '确定',
+                success: res => {}
+            })
+            return;
+        }
+        var dataUp = that.data.detailUp
+        dataUp.heartUltrasound.image = that.data.img2Upload
+        wx.request({
+            url: app.globalData.url + "/heartUltrasound/update",
+            data: dataUp.heartUltrasound,
+            method: 'POST',
+            header: {
+                'content-type': 'application/json'
+            },
+            success: function (res) {
+                console.log(res)
+                wx.switchTab({
+                    url: '/pages/home/home',
+                })
+                that.setData({
+                    img1: '',
+                    img2: '',
+                    imgList: [],
+                    img1Upload: '',
+                    img2Upload: '',
+                })
+            },
+            fail: function (error) {}
+        })
     },
 
 
@@ -480,5 +563,39 @@ Page({
         this.setData({
             textareaBValue: e.detail.value
         })
-    }
+    },
+    // format: function (dataString) {
+    //     //dataString是整数，否则要parseInt转换
+    //     var time = new Date(dataString);
+    //     var year = time.getFullYear();
+    //     var month = time.getMonth() + 1;
+    //     var day = time.getDate();
+    //     var hour = time.getHours();
+    //     var minute = time.getMinutes();
+    //     var second = time.getSeconds();
+    //     return year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day) + ' ' +
+    //         (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute) + ':' + (second < 10 ? '0' + second : second)
+    // },
+
+
 })
+Date.prototype.format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
+}

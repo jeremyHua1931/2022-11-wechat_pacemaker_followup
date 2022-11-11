@@ -61,9 +61,9 @@ Page({
                 'content-type': 'application/json'
             },
             success: function (res) {
-                // console.log("主页请求数据开始")
-                // console.log(res.data.data)
-                // console.log("主页请求数据结束")
+                console.log("主页请求数据开始")
+                console.log(res.data.data)
+                console.log("主页请求数据结束")
                 var data = that.transDateList(res.data.data)
                 that.setData({
                     dataList: data

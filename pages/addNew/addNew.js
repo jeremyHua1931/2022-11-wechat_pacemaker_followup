@@ -64,7 +64,7 @@ Page({
                         img1: res.tempFilePaths
                     })
                     //上传到阿里云
-                    var dir = app.globalData.userid + "/img1/";
+                    var dir = app.globalData.userid + "img1/";
                     uploadImage(res.tempFilePaths[0], dir,
                         function (result) {
                             console.log("img1上传成功图片地址为：", result);
@@ -126,7 +126,7 @@ Page({
                         img2: res.tempFilePaths
                     })
                     //上传到阿里云
-                    var dir = app.globalData.userid + "/img2/";
+                    var dir = app.globalData.userid + "img2/";
                     uploadImage(res.tempFilePaths[0], dir,
                         function (result) {
                             console.log("img2上传成功图片地址为：", result);
@@ -267,14 +267,14 @@ Page({
     imgMsgTo: function () {
         var that = this;
         console.log("==>记录开始添加到数据库中")
-        console.log("   1-img1Upload: ")
-        console.log(that.data.img1Upload)
-        console.log("   2-img2Upload: ")
-        console.log(that.data.img2Upload)
-        console.log("   3-imgList: ")
-        console.log(that.data.imgList)
-        console.log("   4-imgListUpload: ")
-        console.log(that.data.imgListUpload)
+        // console.log("   1-img1Upload: ")
+        // console.log(that.data.img1Upload)
+        // console.log("   2-img2Upload: ")
+        // console.log(that.data.img2Upload)
+        // console.log("   3-imgList: ")
+        // console.log(that.data.imgList)
+        // console.log("   4-imgListUpload: ")
+        // console.log(that.data.imgListUpload)
 
         if (that.data.img1Upload.length == 0) {
             wx.showModal({
@@ -293,41 +293,51 @@ Page({
 
         console.log("目前随访次数为: " + app.globalData.mrinfo.followCounts)
         var newfrCount = app.globalData.mrinfo.followCounts + 1
-        app.globalData.mrinfo.followCounts=newfrCount
-        var newRecord={
+        app.globalData.mrinfo.followCounts = newfrCount
+        var newRecord = {
             followRecord: {
-                frCount: newfrCount ,
-                date: "2022-11-02",
+                frCount: newfrCount,
+                date: that.format(new Date().getTime()),
                 doctor: 53,
                 image: that.data.img1Upload,
                 id: 0,
-                mrId: app.globalData.mrinfo.id
+                mrId: app.globalData.mrinfo.id,
+                state: 2,
             },
         }
+
         if (that.data.img2Upload.length != 0) {
             newRecord = {
                 followRecord: {
-                    frCount: newfrCount ,
-                    date: "2022-11-02",
+                    frCount: newfrCount,
+                    date: that.format(new Date().getTime()),
                     doctor: 53,
                     image: that.data.img1Upload,
                     id: 0,
-                    mrId: app.globalData.mrinfo.id
+                    mrId: app.globalData.mrinfo.id,
+                    state: 2,
                 },
                 heartUltrasound: {
                     image: that.data.img2Upload
-                },
-                raWireRecord: {
-                    id: 0
-                },
-                rvWireRecord: {
-                    id: 0
-                },
-                lvWireRecord: {
-                    id: 0
                 }
             }
         }
+        if (app.globalData.mrinfo.raIn == true) {
+            newRecord["raWireRecord"] = {
+                id: 0
+            }
+        }
+        if (app.globalData.mrinfo.lvIn == true) {
+            newRecord["lvWireRecord"] = {
+                id: 0
+            }
+        }
+        if (app.globalData.mrinfo.rvIn == true) {
+            newRecord["rvWireRecord"] = {
+                id: 0
+            }
+        }
+
         if (that.data.imgListUpload.length != 0) {
             imgLink = imgLink.concat(that.data.imgListUpload)
         }
@@ -353,22 +363,22 @@ Page({
             success: function (res) {
                 console.log(res)
                 console.log("==>新纪录已经添加成功")
-                // console.log("跳转home查看新加入的记录")
-                // wx.switchTab({
-                //   url: '/pages/home/home',
-                // })
+                console.log("跳转home查看新加入的记录")
+                wx.switchTab({
+                    url: '/pages/home/home',
+                })
                 that.setData({
-                    img1:'',
-                    img2:'',
-                    imgList:[],
-                    img1Upload:'',
-                    img2Upload:'',
-                    imgListUpload:[],
+                    img1: '',
+                    img2: '',
+                    imgList: [],
+                    img1Upload: '',
+                    img2Upload: '',
+                    imgListUpload: [],
                 })
             },
             fail: function (error) {}
         })
-        
+
     },
 
     // getPhoneNumber (e) {
@@ -402,41 +412,70 @@ Page({
                 url: '/pages/user/user'
             })
         }
+        var that = this
+        wx.request({
+            url: app.globalData.url + '/user/medicalRecord',
+            data: {
+                userId: app.globalData.userid
+            },
+            method: 'POST',
+            header: {
+                'content-type': 'application/json'
+            },
+            success: function (res) {
+                console.log("！！档案信息更新")
+                app.globalData.mrinfo = res.data
+                console.log(res.data)
+            },
+            fail: function (error) {}
+        })
+    
+},
 
-    },
+/**
+ * 生命周期函数--监听页面隐藏
+ */
+onHide() {
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {
+},
 
-    },
+/**
+ * 生命周期函数--监听页面卸载
+ */
+onUnload() {
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {
+},
 
-    },
+/**
+ * 页面相关事件处理函数--监听用户下拉动作
+ */
+onPullDownRefresh() {
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
+},
 
-    },
+/**
+ * 页面上拉触底事件的处理函数
+ */
+onReachBottom() {
 
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
+},
 
-    },
+/**
+ * 用户点击右上角分享
+ */
+onShareAppMessage() {
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
-    }
+},
+ format:function(dataString) {
+    //dataString是整数，否则要parseInt转换
+    var time = new Date(dataString);
+    var year = time.getFullYear();
+    var month = time.getMonth() + 1;
+    var day = time.getDate();
+    var hour = time.getHours();
+    var minute = time.getMinutes();
+    var second = time.getSeconds();
+    return year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day) + ' ' +
+    (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute) + ':' + (second < 10 ? '0' + second : second)
+},
 })

@@ -3,9 +3,9 @@ App({
 
     // mrId 为档案id
     globalData: {
-        appid: 'wx80f70e7ef0391e41',
-        appsecret: 'b6de35cfd04a337c5c7fb1570130344f',
-        url: "http://10.131.242.79:8005",
+        appid: 'wx9051608e4967c711',
+        appsecret: '4d1582c0522ac6851d7f05fea03d9a47',
+        url: "http://10.131.146.230:8005",
         userInfo: {},
         openid: '0',
         userid: '0',
@@ -68,7 +68,7 @@ App({
         wx.request({
             url: that.globalData.url + '/user/medicalRecord',
             data: {
-                userId: 53
+                userId:  that.globalData.userid
             },
             method: 'POST',
             header: {
