@@ -139,7 +139,7 @@
 
     <view class="cu-form-group">
 		<view class="title">上传心脏超声图片 ({{img2.length}}/1）</view>
-		<switch checked="{{displayImageUpload2}}" bindchange="changeDisplayImageUpload2"></switch>
+		<switch checked="{{displayImageUpload2}}" disabled="{{item1.follow_record.state!='3'}}" bindchange="changeDisplayImageUpload2"></switch>
 	</view>
 
 

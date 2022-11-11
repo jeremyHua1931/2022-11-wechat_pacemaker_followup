@@ -195,6 +195,11 @@ Component({
 
         // 事件处理函数
         onShow: function () {
+           this.setData({
+              starCount: app.globalData.starCount,
+              forksCount: app.globalData.forksCount,
+              visitTotal: app.globalData.visitTotal,
+            })
             var that = this;
             if (app.globalData.userInfo.avatarUrl != null) {
                 console.log("已获取到本地用户存储信息，无需登陆");
