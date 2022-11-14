@@ -1,8 +1,9 @@
 # 微信小程序迭代记录_完整版
 
-> Author：孔维辰&华章昭
+> Author：孔维辰(Cymto)&华章昭(JeremyHua1931)
 >
 > Group Repository： https://gitee.com/cbz44_44/pacemaker_backstage/tree/wechat/ 
+> Wechat Program Repository: https://github.com/jeremyHua1931/wechat_pacemaker_followup
 
 ## 1. 简介
 
@@ -185,14 +186,9 @@
 
 ## 8. 截图展示
 
-![image-20221111182525301](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111825346.png)
+![image-20221111182525301](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111825346.png) ![image-20221111182558549](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111825592.png) 
+![image-20221111182614532](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111826583.png) ![image-20221111182633862](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111826921.png)
+![image-20221111182655125](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111826169.png) ![image-20221111182711676](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111827724.png)
 
-![image-20221111182558549](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111825592.png)
 
-![image-20221111182614532](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111826583.png)
 
-![image-20221111182633862](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111826921.png)
-
-![image-20221111182655125](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111826169.png)
-
-![image-20221111182711676](https://typora-1303953674.cos.ap-nanjing.myqcloud.com/typora/202211111827724.png)
